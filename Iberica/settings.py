@@ -74,9 +74,22 @@ WSGI_APPLICATION = 'Iberica.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'panqayuda',
+    #    'USER': 'root', 
+    #    'PASSWORD': '',
+    #    'HOST': 'localhost',
+    #    'PORT': '3306',
+    #}
+
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.iberica'),
+        'NAME': 'Iberica',
+        'USER': 'master', 
+        'PASSWORD': 'A01208050',
+        'HOST': 'iberica.cxfwphwnnmqf.us-east-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 

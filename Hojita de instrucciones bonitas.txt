@@ -1,0 +1,11 @@
+Si pusiste los datos en settings.py e instalaste mysqlclient, ve a la carpeta principal del proyecto usando cmd (donde está manage.py). Después ejecuta las siguientes instrucciones
+Para tener acceso a la db:
+python manage.py migrate
+Para acceder al shell:
+pyton manage.py shell
+Desde allí hacer un import de la librería de conexiones:
+from django.db import connections
+Declarar una variable que será nuestra conexión directa con la DB:
+cursor = connections['default'].cursor()
+Escribir el query que quieras:
+cursor.execute("SELECT * FROM Categoria")
