@@ -1,0 +1,15 @@
+<p>Hello world</p>
+
+<form>
+    Escoja el nombre del programa:<br>
+    <select name="program">
+        {% if programs_list %}
+            <option disabled selected="true">Seleccione un programa</option>
+            {% for program in programs_list %}
+                <option value="{{ program.id }}">{{ program.name }}</option>
+            {% endfor %}
+        {% else %}
+            <option disabled>No hay programas disponibles</option>
+        {% endif %}
+    </select>
+</form>
