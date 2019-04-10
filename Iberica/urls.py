@@ -3,7 +3,10 @@ from django.urls import path
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from core import views
+<<<<<<< HEAD
 from schedule import views as schedule_views
+=======
+>>>>>>> Alexis
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,6 +19,9 @@ urlpatterns = [
     url(r'^special/',views.special,name='special'),
     url(r'^core/',include('core.urls')),
     url(r'^user_logout/$', views.user_logout, name='logout'),
+<<<<<<< HEAD
 
     url('register/', schedule_views.index, name='schedule'),
+=======
+>>>>>>> Alexis
 ]

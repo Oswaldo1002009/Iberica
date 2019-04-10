@@ -69,3 +69,72 @@ class Classes(models.Model):
 
     def __str__(self):
         return self.name
+<<<<<<< HEAD
+=======
+
+class Blood_type(models.Model):
+    type = models.CharField(max_length=50, db_index=True, default='')
+
+    class Meta:
+        verbose_name = 'Blood_type'
+        verbose_name_plural = 'Blood_types'
+
+    def __str__(self):
+        return self.type
+
+class Groups(models.Model):
+    code = models.CharField(max_length=10, db_index=True)
+    discount = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    enrolled = models.IntegerField()
+    total_payed = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('code', )
+        verbose_name = 'Group'
+        verbose_name_plural = 'Groups'
+
+    def __str__(self):
+        return self.code
+
+class Enrolled(models.Model):
+    name = models.CharField(max_length=200)
+    birth_date = models.DateTimeField()
+    level = models.CharField(max_length=50)
+    mail = models.CharField(max_length=100)
+    phone = models.IntegerField()
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=100)
+    country = models.CharField(max_length=50)
+    zip_code = models.IntegerField()
+    academy = models.CharField(max_length=100)
+    disease = models.CharField(max_length=200)
+    blood_type = models.ForeignKey(Blood_type, related_name='blood_type', on_delete=models.CASCADE)
+    enrolled = models.BooleanField(default=False)
+    amount_en = models.IntegerField()
+    payed_courses = models.IntegerField()
+    total_payed = models.BooleanField(default=False)
+    group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Enrolled'
+        verbose_name_plural = 'Enrolled'
+
+    def __str__(self):
+        return self.name
+
+class Em_contact(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    relation = models.CharField(max_length=50)
+    phone = models.IntegerField()
+    enrolled = models.ForeignKey(Enrolled, related_name='Enrolled_contact', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('name', )
+        verbose_name = 'Emergency_contact'
+        verbose_name_plural = 'Emergency_contacts'
+
+    def __str__(self):
+        return self.name
+
+>>>>>>> Alexis
