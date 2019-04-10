@@ -1,5 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from .models import Program
 
 #def index(request):
@@ -11,7 +10,4 @@ def index(request):
         'programs_list': programs_list,
     }
     return render(request, 'schedule/schedule.html', context)
-=======
 
-# Create your views here.
->>>>>>> Alexis

@@ -69,8 +69,6 @@ class Classes(models.Model):
 
     def __str__(self):
         return self.name
-<<<<<<< HEAD
-=======
 
 class Blood_type(models.Model):
     type = models.CharField(max_length=50, db_index=True, default='')
@@ -136,5 +134,3 @@ class Em_contact(models.Model):
 
     def __str__(self):
         return self.name
-
->>>>>>> Alexis

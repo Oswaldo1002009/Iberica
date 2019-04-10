@@ -1,9 +1,5 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import Program, Level, Weeks, Teacher, Classes
-=======
 from .models import Program, Level, Weeks, Teacher, Classes, Blood_type, Enrolled, Em_contact, Groups
->>>>>>> Alexis
 
 
 admin.site.register(Program)
@@ -22,8 +18,6 @@ admin.site.register(Teacher)
 admin.site.register(Classes)
 class ClassesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'rem_places': ('max_places',)}
-<<<<<<< HEAD
-=======
 
 admin.site.register(Blood_type)
 
@@ -32,4 +26,3 @@ admin.site.register(Groups)
 admin.site.register(Enrolled)
 
 admin.site.register(Em_contact)
->>>>>>> Alexis

@@ -8,8 +8,4 @@ class UserProfileInfo (models.Model):
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
 
     def __str__(self):
-<<<<<<< HEAD
         return self.user.username
-=======
-        return self.user.username
->>>>>>> Alexis

@@ -11,8 +11,4 @@ class UserForm(forms.ModelForm):
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
-<<<<<<< HEAD
         fields = ('portfolio_site','profile_pic')
-=======
-        fields = ('portfolio_site','profile_pic')
->>>>>>> Alexis
