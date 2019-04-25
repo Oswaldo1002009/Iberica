@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Inscripción a curso</h2>
+  <form method="post" novalidate id="ClassEnrolledForm" data-levels-url="{% url 'ajax_load_levels' %}">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+    <a href="{% url 'enrolled_student' %}">Nevermind</a>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_id_program").change(function () {
+      var url = $("#ClassEnrolledForm").attr("data-levels-url");
+      var programId = $(this).val();
+      $.ajax({
+        url: url,
+        data: {
+          'id_program': programId
+        },
+        success: function (data) {
+          $("#id_id_level").html(data);
+        }
+      });
+    });
+  </script>
+{% endblock %}

@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Program(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     available = models.BooleanField(default=True)
@@ -15,8 +14,8 @@ class Program(models.Model):
 
 
 class Level(models.Model):
-    level = models.IntegerField(db_index=True)
-    name = models.CharField(max_length=200)
+    level = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, db_index=True)
     min_age = models.IntegerField()
     max_age = models.IntegerField()
     description = models.CharField(max_length=300, blank=True)
@@ -53,7 +52,8 @@ class Weeks(models.Model):
         return self.name
 
 class Classes(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, db_index=True)
+    level_id = models.ForeignKey(Level, related_name="classes", on_delete=models.CASCADE)
     time_ini = models.TimeField()
     time_end = models.TimeField()
     max_places = models.IntegerField()
@@ -97,8 +97,6 @@ class Groups(models.Model):
 class Enrolled(models.Model):
     name = models.CharField(max_length=200)
     birth_date = models.DateTimeField()
-    level = models.CharField(max_length=50)
-    mail = models.CharField(max_length=100)
     phone = models.IntegerField()
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
@@ -134,3 +132,18 @@ class Em_contact(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ClassEnrolled(models.Model):
+    id_program = models.ForeignKey(Program, related_name="Program", on_delete=models.CASCADE)
+    id_level = models.ForeignKey(Level, related_name="Level", on_delete=models.CASCADE)
+    id_class = models.ForeignKey(Classes, related_name='Class', on_delete=models.CASCADE, db_index=True)
+    id_enrolled = models.ForeignKey(Enrolled, related_name='Student', on_delete=models.CASCADE, db_index=True)
+
+    class Meta:
+        index_together = (('id_class', 'id_enrolled'),)
+        verbose_name = 'Class Enrolled'
+        verbose_name_plural = 'Classes Enrolled'
+
+    def __str__(self):
+        return "%s %s" % (self.id_class, self.id_enrolled)

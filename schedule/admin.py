@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Program, Level, Weeks, Teacher, Classes, Blood_type, Enrolled, Em_contact, Groups
+from .models import Program, Level, Weeks, Teacher, Classes, Blood_type, Enrolled, Em_contact, Groups, ClassEnrolled
 
 
 admin.site.register(Program)
@@ -26,3 +26,5 @@ admin.site.register(Groups)
 admin.site.register(Enrolled)
 
 admin.site.register(Em_contact)
+
+admin.site.register(ClassEnrolled)
