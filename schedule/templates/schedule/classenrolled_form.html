@@ -2,14 +2,20 @@
 
 {% block content %}
   <h2>Inscripción a curso</h2>
-  <form method="post" novalidate id="ClassEnrolledForm" data-levels-url="{% url 'ajax_load_levels' %}">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <button type="submit">Save</button>
-    <a href="{% url 'enrolled_student' %}">Nevermind</a>
-  </form>
+      {% if user.is_authenticated and not user.is_staff %}
+        <form method="post" novalidate id="ClassEnrolledForm"
+              data-levels-url="{% url 'ajax_load_levels' %}"
+              data-classes-url="{% url 'ajax_load_classes' %}">
+          {% csrf_token %}
+          <table>
+            {{ form.as_table }}
+          </table>
+          <button type="submit">Save</button>
+          <a href="{% url 'enrolled_student' %}">Nevermind</a>
+        </form>
+    {% else %}
+        <p>Por favor inicia sesión para continuar</p>
+    {% endif %}
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
@@ -23,6 +29,20 @@
         },
         success: function (data) {
           $("#id_id_level").html(data);
+        }
+      });
+    });
+
+    $("#id_id_level").change(function () {
+      var url = $("#ClassEnrolledForm").attr("data-classes-url");
+      var levelId = $(this).val();
+      $.ajax({
+        url: url,
+        data: {
+          'id_level': levelId
+        },
+        success: function (data) {
+          $("#id_id_class").html(data);
         }
       });
     });

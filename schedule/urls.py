@@ -7,4 +7,5 @@ urlpatterns = [
     path('add/', views.ClassCreateView.as_view(), name='class_add'),
     path('<int:pk>/', views.ClassUpdateView.as_view(), name='class_change'),
     path('ajax/load-levels/', views.load_levels, name='ajax_load_levels'),
+    path('ajax/load-classes/', views.load_classes, name='ajax_load_classes'),
 ]
