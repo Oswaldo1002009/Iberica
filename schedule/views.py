@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from .models import ClassEnrolled, Program, Level, Classes, User
+from .models import ClassEnrolled, Program, Level, Classes
 from .forms import ClassEnrolledForm
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import ClassEnrolled, User
+from .models import ClassEnrolled
 from django.utils.translation import ugettext_lazy as _
 
 
