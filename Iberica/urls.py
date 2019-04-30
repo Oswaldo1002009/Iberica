@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^user_logout/$', views.user_logout, name='logout'),
 
     url('register/', schedule_views.index, name='schedule'),
+    path('select/', include('schedule.urls')),
 ]

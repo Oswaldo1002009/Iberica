@@ -2,8 +2,10 @@ from django.urls import path
 
 from . import views
 
-app_name = 'schedule'
-
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='schedule'),
+    path('', views.ClassListView.as_view(), name='enrolled_student'),
+    path('add/', views.ClassCreateView.as_view(), name='class_add'),
+    path('<int:pk>/', views.ClassUpdateView.as_view(), name='class_change'),
+    path('ajax/load-levels/', views.load_levels, name='ajax_load_levels'),
+    path('ajax/load-classes/', views.load_classes, name='ajax_load_classes'),
 ]
