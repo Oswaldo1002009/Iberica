@@ -87,9 +87,9 @@ class Blood_type(models.Model):
 
 
 class Groups(models.Model):
-    code = models.CharField(max_length=100, db_index=True)
+    code = models.ForeignKey(User, related_name='code', on_delete=models.CASCADE, db_index=True)
     discount = models.DecimalField(max_digits=5, decimal_places=2, default=0)
-    enrolled = models.IntegerField()
+    enrolled = models.IntegerField(default=0, blank=True)
     total_payed = models.BooleanField(default=False)
 
     class Meta:
@@ -117,7 +117,7 @@ class Enrolled(models.Model):
     amount_en = models.IntegerField()
     payed_courses = models.IntegerField()
     total_payed = models.BooleanField(default=False)
-    group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE)
+    group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE, null=True)
 
     class Meta:
         ordering = ('name',)

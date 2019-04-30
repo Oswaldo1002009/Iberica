@@ -1,5 +1,5 @@
 from django import forms
-from .models import ClassEnrolled
+from .models import ClassEnrolled, Groups
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -16,3 +16,8 @@ class ClassEnrolledForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+class RegisterGroup(forms.ModelForm):
+    class Meta:
+        model = Groups
+        fields=()
