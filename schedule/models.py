@@ -81,7 +81,7 @@ class Blood_type(models.Model):
         return self.type
 
 class Groups(models.Model):
-    code = models.CharField(max_length=10, db_index=True)
+    code = models.CharField(max_length=100, db_index=True)
     discount = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     enrolled = models.IntegerField()
     total_payed = models.BooleanField(default=False)
