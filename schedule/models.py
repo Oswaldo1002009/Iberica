@@ -43,9 +43,9 @@ class Teacher(models.Model):
 
 
 class Weeks(models.Model):
-    name = models.CharField(max_length=50, db_index=True)
-    ini_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    week1 = models.CharField(max_length=50, db_index=True)
+    ini1 = models.DateTimeField()
+    end1 = models.DateTimeField()
 
     class Meta:
         verbose_name = 'week'
