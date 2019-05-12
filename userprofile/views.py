@@ -16,16 +16,6 @@ def index(request):
 
 
 def profile(request):
-    '''
-    if request.method == 'POST':
-        form = CompleteProfile(request.POST)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.user = request.user
-            obj.save()
-            profile = UserProfileInfo.objects.create(user=obj.user, form_validate=True)
-            return HttpResponseRedirect(reverse_lazy('profileform'))
-    '''
     if request.user.is_authenticated:
         user = request.user
         #Case logged user with enrolled form completed
@@ -53,23 +43,3 @@ def profile(request):
 
     #Case not logged
     return render(request, 'schedule/enrolled_form.html')
-
-    '''
-    form = CompleteProfile()
-    return render(request, 'schedule/enrolled_form.html', {'form': form})
-    '''
-
-
-class CreateProfile(CreateView):
-    model = Enrolled
-    form_class = CompleteProfile
-    #Enabled by default
-    #template_name = 'enrolled_form.html'
-    success_url = reverse_lazy('profileform')
-
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.user = self.request.user
-        obj.save()
-        profile = UserProfileInfo.objects.create(user=obj.user, form_validate=True)
-        return HttpResponseRedirect(reverse_lazy('profileform'))
