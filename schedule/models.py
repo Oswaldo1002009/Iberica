@@ -102,30 +102,42 @@ class Groups(models.Model):
 
 
 class Enrolled(models.Model):
-    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE, db_index=True)
+    user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE, db_index=True)
     name = models.CharField(max_length=200)
+    lastname = models.CharField(max_length=200)
     birth_date = models.DateTimeField()
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=13)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=50)
-    zip_code = models.IntegerField()
+    zip_code = models.CharField(max_length=5)
     academy = models.CharField(max_length=100)
-    disease = models.CharField(max_length=200)
-    blood_type = models.ForeignKey(Blood_type, related_name='blood_type', on_delete=models.CASCADE)
-    enrolled = models.BooleanField(default=False)
-    amount_en = models.IntegerField()
-    payed_courses = models.IntegerField()
-    total_payed = models.BooleanField(default=False)
-    group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE, null=True)
+    disease = models.TextField(blank=True)
+    BLOOD_TYPES = (
+        ('A+', 'A+'),
+        ('A-', 'A-'),
+        ('B+', 'B+'),
+        ('B-', 'B-'),
+        ('AB+', 'AB+'),
+        ('AB-', 'AB-'),
+        ('O+', 'O+'),
+        ('O-', 'O-'),
+    )
+    blood_type = models.CharField(max_length=10, choices=BLOOD_TYPES)
+    #enrolled = models.BooleanField(default=False, blank=True, null=True)
+    #amount_en = models.IntegerField(blank=True, null=True)
+    #payed_courses = models.IntegerField(blank=True, null=True)
+    #total_payed = models.BooleanField(default=False, blank=True, null=True)
+    #group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE, null=True)
 
     class Meta:
+        unique_together = [['user']]
         ordering = ('name',)
         verbose_name = 'Enrolled'
         verbose_name_plural = 'Enrolled'
 
     def __str__(self):
-        return self.name
+        return "%s: %s %s" % (self.user, self.name, self.lastname)
 
 
 class Em_contact(models.Model):
