@@ -20,12 +20,11 @@ def profile(request):
         user = request.user
         #Case logged user with enrolled form completed
         try:
-            validation = UserProfileInfo.objects.get(user=user)
-        except UserProfileInfo.DoesNotExist:
-            validation = None
-        if validation is not None:
             enrolled = Enrolled.objects.get(user=user)
-            return render(request, 'schedule/already_enrolled.html', {'validation': validation, 'enrolled': enrolled})
+        except Enrolled.DoesNotExist:
+            enrolled = None
+        if enrolled is not None:
+            return render(request, 'schedule/already_enrolled.html', {'enrolled': enrolled})
 
         #Case logged user completing enrolled form
         if request.method == 'POST':
@@ -34,7 +33,6 @@ def profile(request):
                 obj = form.save(commit=False)
                 obj.user = request.user
                 obj.save()
-                profile = UserProfileInfo.objects.create(user=obj.user, form_validate=True)
                 return HttpResponseRedirect(reverse_lazy('profileform'))
 
         #Case logged user but enrolled form has not been completed
