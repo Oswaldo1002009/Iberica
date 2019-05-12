@@ -8,13 +8,14 @@ class DateInput(forms.DateInput):
 class CompleteProfile(forms.ModelForm):
     class Meta:
         model = Enrolled
-        fields =['name', 'lastname', 'birth_date', 'phone', 'address', 'city', 'country',
+        fields =['name', 'lastname', 'birth_date', 'gender', 'phone', 'address', 'city', 'country',
                  'zip_code', 'academy', 'disease', 'blood_type',]
         exclude = ['user', 'amount_en', 'payed_courses', 'total_payed', 'group']
         labels = {
             'name': _('Nombre(s)'),
             'lastname': _('Apellidos'),
             'birth_date': _('Fecha de nacimiento'),
+            'gender': _('Género'),
             'phone': _('Teléfono'),
             'address': _('Dirección'),
             'city': _('Ciudad'),

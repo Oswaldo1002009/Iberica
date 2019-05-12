@@ -105,6 +105,11 @@ class Enrolled(models.Model):
     user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE, db_index=True)
     name = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
+    GENDER = (
+        ('Masculino', 'Masculino'),
+        ('Femenino', 'Femenino'),
+    )
+    gender = models.CharField(max_length=10, choices=GENDER)
     birth_date = models.DateTimeField()
     phone = models.CharField(max_length=13)
     address = models.CharField(max_length=200)
