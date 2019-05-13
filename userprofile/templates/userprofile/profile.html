@@ -8,6 +8,9 @@
         {% for class in talleres_guitarra %}
         <p><strong>Taller de guitarra:</strong> {{ class.id_class }}</p>
         {% endfor %}
+        {% for obs in observadores %}
+        <p><strong>Observador:</strong> {{ obs.id_class }}</p>
+        {% endfor %}
         <p><a href="{% url 'class_add' %}">Inscribir a un curso</a></p>
     {% else %}
         <p>Para comenzar, por favor llena tus datos de identificación haciendo clic <a href="{% url 'profileform' %}">aquí.</a></p>

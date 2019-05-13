@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra
+from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra, Observador
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from .forms import CompleteProfile
@@ -16,9 +16,11 @@ def index(request):
             enrolled = None
         if enrolled is not None:
             talleres_guitarra = TallerGuitarra.objects.filter(id_enrolled=user)
+            observadores = Observador.objects.filter(id_enrolled=user)
             context = {
                 'talleres_guitarra': talleres_guitarra,
                 'enrolled': enrolled,
+                'observadores': observadores,
             }
             return render(request, 'userprofile/profile.html', context)
     return render(request, 'userprofile/profile.html')

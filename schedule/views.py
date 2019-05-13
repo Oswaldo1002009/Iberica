@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled
-from .forms import ClassEnrolledForm, TallerGuitarraForm
+from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm
 
 
 def ins_TallerGuitarra(request):

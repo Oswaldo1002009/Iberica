@@ -199,3 +199,10 @@ class Observador(models.Model):
         ('1 día', '1 día'),
     )
     id_class = models.CharField(max_length=30, choices=CHOICES)
+
+    class Meta:
+        verbose_name = 'Observador'
+        verbose_name_plural = 'Observadores'
+
+    def __str__(self):
+        return "%s %s" % (self.id_class, self.id_enrolled)

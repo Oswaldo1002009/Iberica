@@ -5,6 +5,7 @@
     <h4>¿A qué programa deseas inscribirte?</h4>
     {% if enrolled %}
         <a href="{% url 'TallerGuitarra' %}"><button>Talleres de Guitarra</button></a>
+        <a href="{% url 'Observadores' %}"><button>Observadores</button></a>
     {% else %}
         <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
         llenarlos</p>
