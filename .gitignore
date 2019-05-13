@@ -3,3 +3,5 @@
 staticfiles
 settings.py
 __pycache__
+.idea
+.idea/*

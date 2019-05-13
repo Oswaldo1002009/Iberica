@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      {% if user.is_authenticated and not user.is_staff %}
+        <h2>Ingresa tus datos de identificación</h2>
+        <form method="post" novalidate id="CreateProfile">
+          {% csrf_token %}
+          <table>
+            {{ form.as_table }}
+          </table>
+          <input type="submit" value="Guardar"
+          onclick="return confirm('¿Deseas confirmar tus datos? No podrás modificarlos una vez los guardes.')"/>
+          <a href="{% url 'userprofile' %}">Regresar</a>
+        </form>
+    {% else %}
+        <p>Por favor inicia sesión para continuar</p>
+    {% endif %}
+{% endblock %}

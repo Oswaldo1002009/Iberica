@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Datos de identificación</h2>
+<br/><br/>
+<table>
+    <tr>
+        <td><strong>Nombre:</strong></td>
+        <td>{{ enrolled.name }} {{ enrolled.lastname }}</td>
+    </tr>
+    <tr>
+        <td><strong>Género:</strong></td>
+        <td>{{ enrolled.gender }}</td>
+    </tr>
+    <tr>
+        <td><strong>Fecha de nacimiento:</strong></td>
+        <td>{{ enrolled.birth_date|date:'d/m/Y' }}</td>
+    </tr>
+    <tr>
+        <td><strong>Teléfono:</strong></td>
+        <td>{{ enrolled.phone }}</td>
+    </tr>
+    <tr>
+        <td><strong>Dirección:</strong></td>
+        <td>{{ enrolled.address }}</td>
+    </tr>
+    <tr>
+        <td><strong>Ciudad:</strong></td>
+        <td>{{ enrolled.city }}</td>
+    </tr>
+    <tr>
+        <td><strong>País de origen:</strong></td>
+        <td>{{ enrolled.country }}</td>
+    </tr>
+    <tr>
+        <td><strong>Código postal:</strong></td>
+        <td>{{ enrolled.zip_code }}</td>
+    </tr>
+    <tr>
+        <td><strong>Academia:</strong></td>
+        <td>{{ enrolled.academy }}</td>
+    </tr>
+    <tr>
+        <td><strong>Enfermedades:</strong></td>
+        <td>{% if enrolled.disease %}{{ enrolled.disease }}{% else %}Ninguna{% endif %}</td>
+    </tr>
+    <tr>
+        <td><strong>Tipo de sangre:</strong></td>
+        <td>{{ enrolled.blood_type }}</td>
+    </tr>
+</table>
+
+{% endblock %}

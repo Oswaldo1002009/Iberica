@@ -4,6 +4,7 @@ from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from core import views
 from schedule import views as schedule_views
+from userprofile import views as user_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,4 +20,5 @@ urlpatterns = [
 
     url('register/', schedule_views.index, name='schedule'),
     path('select/', include('schedule.urls')),
+    path('user/', include('userprofile.urls')),
 ]
