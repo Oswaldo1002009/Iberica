@@ -1,9 +1,42 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled
-from .forms import ClassEnrolledForm
+from .forms import ClassEnrolledForm, TallerGuitarraForm
+
+
+def ins_TallerGuitarra(request):
+    # Case for Taller de Guitarra
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+    if request.method == 'POST':
+        form = TallerGuitarraForm(request.POST)
+        if form.is_valid():
+            new_class = form.save(commit=False)
+            new_class.id_enrolled = request.user
+            new_class.save()
+            return redirect(reverse('userprofile'))
+    form = TallerGuitarraForm()
+    return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form})
+
+
+def inscription(request):
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+        #Program not selected
+        return render(request, 'schedule/schedule.html', {'enrolled': enrolled})
+    #Session not started
+    return render(request, "schedule/schedule.html")
 
 
 def index(request):
@@ -13,12 +46,14 @@ def index(request):
     }
     return render(request, 'schedule/schedule.html', context)
 
+
 def group_inv(request):
     group_list = Groups.objects.order_by('code')
     context = {
         'group_list': group_list,
     }
     return render(request, 'schedule/schedule.html', context)
+
 
 class ClassListView(ListView):
     model = ClassEnrolled

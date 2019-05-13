@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Program(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
+    name = models.CharField(max_length=50, db_index=True)
     available = models.BooleanField(default=True)
 
     class Meta:
@@ -170,6 +170,22 @@ class ClassEnrolled(models.Model):
         index_together = (('id_class', 'id_enrolled'),)
         verbose_name = 'Class Enrolled'
         verbose_name_plural = 'Classes Enrolled'
+
+    def __str__(self):
+        return "%s %s" % (self.id_class, self.id_enrolled)
+
+
+class TallerGuitarra(models.Model):
+    id_enrolled = models.ForeignKey(User, related_name='Guitar_Enrolled', on_delete=models.CASCADE, db_index=True)
+    CLASSES = (
+        ('8-12 julio: 2 talleres', '8-12 julio: 2 talleres'),
+        ('8-12 julio: 1 taller', '8-12 julio: 1 taller'),
+    )
+    id_class = models.CharField(max_length=30, choices=CLASSES)
+
+    class Meta:
+        verbose_name = 'Taller de Guitarra'
+        verbose_name_plural = 'Talleres de Guitarra'
 
     def __str__(self):
         return "%s %s" % (self.id_class, self.id_enrolled)

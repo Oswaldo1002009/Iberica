@@ -8,11 +8,15 @@ from core.models import UserProfileInfo
 
 
 def index(request):
-    classes_list = ClassEnrolled.objects.order_by('id_class')
-    context = {
-        'classes_list': classes_list,
-    }
-    return render(request, 'userprofile/profile.html', context)
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+        if enrolled is not None:
+            return render(request, 'userprofile/profile.html', {'enrolled': enrolled})
+    return render(request, 'userprofile/profile.html')
 
 
 def profile(request):
@@ -33,7 +37,7 @@ def profile(request):
                 obj = form.save(commit=False)
                 obj.user = request.user
                 obj.save()
-                return HttpResponseRedirect(reverse_lazy('profileform'))
+                return HttpResponseRedirect(reverse_lazy('userprofile'))
 
         #Case logged user but enrolled form has not been completed
         form = CompleteProfile()

@@ -2,9 +2,16 @@
 
 {% block content %}
 {% if user.is_authenticated and not user.is_staff %}
-    <h4>¿A qué programa deseas inscribirte?</h4>
+    <h4>Selecciona tu taller</h4>
     {% if enrolled %}
-        <a href="{% url 'TallerGuitarra' %}"><button>Talleres de Guitarra</button></a>
+        <form method="post" novalidate id="TallerGuitarraForm">
+          {% csrf_token %}
+          <table>
+            {{ form.as_table }}
+          </table>
+          <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar"/>
+          <a href="{% url 'userprofile' %}">Regresar</a>
+        </form>
     {% else %}
         <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
         llenarlos</p>

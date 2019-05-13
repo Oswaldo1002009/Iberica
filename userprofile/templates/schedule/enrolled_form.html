@@ -8,8 +8,9 @@
           <table>
             {{ form.as_table }}
           </table>
-          <button type="submit">Guardar</button>
-          <a href="{% url 'profileform' %}">Regresar</a>
+          <input type="submit" value="Guardar"
+          onclick="return confirm('¿Deseas confirmar tus datos? No podrás modificarlos una vez los guardes.')"/>
+          <a href="{% url 'userprofile' %}">Regresar</a>
         </form>
     {% else %}
         <p>Por favor inicia sesión para continuar</p>
