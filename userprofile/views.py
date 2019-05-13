@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from schedule.models import Enrolled, ClassEnrolled
+from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from .forms import CompleteProfile
@@ -15,7 +15,12 @@ def index(request):
         except Enrolled.DoesNotExist:
             enrolled = None
         if enrolled is not None:
-            return render(request, 'userprofile/profile.html', {'enrolled': enrolled})
+            talleres_guitarra = TallerGuitarra.objects.filter(id_enrolled=user)
+            context = {
+                'talleres_guitarra': talleres_guitarra,
+                'enrolled': enrolled,
+            }
+            return render(request, 'userprofile/profile.html', context)
     return render(request, 'userprofile/profile.html')
 
 
@@ -28,7 +33,10 @@ def profile(request):
         except Enrolled.DoesNotExist:
             enrolled = None
         if enrolled is not None:
-            return render(request, 'schedule/already_enrolled.html', {'enrolled': enrolled})
+            context = {
+                'enrolled': enrolled,
+            }
+            return render(request, 'schedule/already_enrolled.html', context)
 
         #Case logged user completing enrolled form
         if request.method == 'POST':
