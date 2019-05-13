@@ -189,3 +189,13 @@ class TallerGuitarra(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.id_class, self.id_enrolled)
+    
+class Observador(models.Model):
+    id_enrolled = models.ForeignKey(User, related_name='Observer_Enrolled', on_delete=models.CASCADE, db_index=True)
+    CHOICES = (
+        ('8-12 julio (Semana 1)', '8-19 julio (Semana 1)'),
+        ('15-19 julio (Semana 2)', '15-19 julio (Semana 2)'),
+        ('8-19 julio (Dos semanas)', '8-19 julio (Dos semanas)'),
+        ('1 día', '1 día'),
+    )
+    id_class = models.CharField(max_length=30, choices=CHOICES)

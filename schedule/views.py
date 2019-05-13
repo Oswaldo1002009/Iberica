@@ -26,6 +26,24 @@ def ins_TallerGuitarra(request):
     return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form})
 
 
+def ins_Observadores(request):
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+    if request.method == 'POST':
+        form = ObservadoresForm(request.POST)
+        if form.is_valid():
+            new_class = form.save(commit=False)
+            new_class.id_enrolled = request.user
+            new_class.save()
+            return redirect(reverse('userprofile'))
+    form = ObservadoresForm()
+    return render(request, 'schedule/5-ObservadoresSemana.html', {'enrolled': enrolled, 'form': form})
+
+
 def inscription(request):
     if request.user.is_authenticated:
         user = request.user

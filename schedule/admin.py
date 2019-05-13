@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Program, Level, Weeks, Teacher, Classes, Blood_type, Enrolled, Em_contact, Groups,\
-    ClassEnrolled, TallerGuitarra
+    ClassEnrolled, TallerGuitarra, Observador
 
 
 admin.site.register(Program)
@@ -31,3 +31,5 @@ admin.site.register(Em_contact)
 admin.site.register(ClassEnrolled)
 
 admin.site.register(TallerGuitarra)
+
+admin.site.register(Observador)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import ClassEnrolled, Groups, TallerGuitarra
+from .models import ClassEnrolled, Groups, TallerGuitarra, Observador
 from django.utils.translation import ugettext_lazy as _
 
 class TallerGuitarraForm(forms.ModelForm):
@@ -10,6 +10,17 @@ class TallerGuitarraForm(forms.ModelForm):
         labels = {
             'id_class': _('Taller'),
         }
+
+
+class ObservadoresForm(forms.ModelForm):
+    class Meta:
+        model = Observador
+        fields = ('id_class',)
+        exclude = ('id_enrolled',)
+        labels = {
+            'id_class': _('Fechas'),
+        }
+
 
 class ClassEnrolledForm(forms.ModelForm):
     class Meta:

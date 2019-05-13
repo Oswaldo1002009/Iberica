@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated and not user.is_staff %}
+    <h4>kkk</h4>
+    {% if enrolled %}
+        <p>hello</p>
+    {% else %}
+        <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
+        llenarlos</p>
+    {% endif %}
+    {% else %}
+        <p>Por favor inicia sesión para continuar</p>
+    {% endif %}
+{% endblock %}
