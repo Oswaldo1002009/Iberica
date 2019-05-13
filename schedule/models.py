@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Program(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
+    name = models.CharField(max_length=50, db_index=True)
     available = models.BooleanField(default=True)
 
     class Meta:
@@ -43,9 +43,9 @@ class Teacher(models.Model):
 
 
 class Weeks(models.Model):
-    name = models.CharField(max_length=50, db_index=True)
-    ini_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    week1 = models.CharField(max_length=50, db_index=True)
+    ini1 = models.DateTimeField()
+    end1 = models.DateTimeField()
 
     class Meta:
         verbose_name = 'week'
@@ -102,30 +102,47 @@ class Groups(models.Model):
 
 
 class Enrolled(models.Model):
-    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE, db_index=True)
+    user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE, db_index=True)
     name = models.CharField(max_length=200)
+    lastname = models.CharField(max_length=200)
+    GENDER = (
+        ('Masculino', 'Masculino'),
+        ('Femenino', 'Femenino'),
+    )
+    gender = models.CharField(max_length=10, choices=GENDER)
     birth_date = models.DateTimeField()
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=13)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     country = models.CharField(max_length=50)
-    zip_code = models.IntegerField()
+    zip_code = models.CharField(max_length=5)
     academy = models.CharField(max_length=100)
-    disease = models.CharField(max_length=200)
-    blood_type = models.ForeignKey(Blood_type, related_name='blood_type', on_delete=models.CASCADE)
-    enrolled = models.BooleanField(default=False)
-    amount_en = models.IntegerField()
-    payed_courses = models.IntegerField()
-    total_payed = models.BooleanField(default=False)
-    group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE, null=True)
+    disease = models.TextField(blank=True)
+    BLOOD_TYPES = (
+        ('A+', 'A+'),
+        ('A-', 'A-'),
+        ('B+', 'B+'),
+        ('B-', 'B-'),
+        ('AB+', 'AB+'),
+        ('AB-', 'AB-'),
+        ('O+', 'O+'),
+        ('O-', 'O-'),
+    )
+    blood_type = models.CharField(max_length=10, choices=BLOOD_TYPES)
+    #enrolled = models.BooleanField(default=False, blank=True, null=True)
+    #amount_en = models.IntegerField(blank=True, null=True)
+    #payed_courses = models.IntegerField(blank=True, null=True)
+    #total_payed = models.BooleanField(default=False, blank=True, null=True)
+    #group = models.ForeignKey(Groups, related_name='group_enrolled', on_delete=models.CASCADE, null=True)
 
     class Meta:
+        unique_together = [['user']]
         ordering = ('name',)
         verbose_name = 'Enrolled'
         verbose_name_plural = 'Enrolled'
 
     def __str__(self):
-        return self.name
+        return "%s: %s %s" % (self.user, self.name, self.lastname)
 
 
 class Em_contact(models.Model):
@@ -156,3 +173,29 @@ class ClassEnrolled(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.id_class, self.id_enrolled)
+
+
+class TallerGuitarra(models.Model):
+    id_enrolled = models.ForeignKey(User, related_name='Guitar_Enrolled', on_delete=models.CASCADE, db_index=True)
+    CLASSES = (
+        ('8-12 julio: 2 talleres', '8-12 julio: 2 talleres'),
+        ('8-12 julio: 1 taller', '8-12 julio: 1 taller'),
+    )
+    id_class = models.CharField(max_length=30, choices=CLASSES)
+
+    class Meta:
+        verbose_name = 'Taller de Guitarra'
+        verbose_name_plural = 'Talleres de Guitarra'
+
+    def __str__(self):
+        return "%s %s" % (self.id_class, self.id_enrolled)
+    
+class Observador(models.Model):
+    id_enrolled = models.ForeignKey(User, related_name='Observer_Enrolled', on_delete=models.CASCADE, db_index=True)
+    CHOICES = (
+        ('8-12 julio (Semana 1)', '8-19 julio (Semana 1)'),
+        ('15-19 julio (Semana 2)', '15-19 julio (Semana 2)'),
+        ('8-19 julio (Dos semanas)', '8-19 julio (Dos semanas)'),
+        ('1 día', '1 día'),
+    )
+    id_class = models.CharField(max_length=30, choices=CHOICES)
