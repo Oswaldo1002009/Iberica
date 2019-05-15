@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.inscription, name='class_add'),
+    path('interdisciplinario/', views.ins_Inter, name='Interdisciplinario'),
     path('taller_guitarra/', views.ins_TallerGuitarra, name='TallerGuitarra'),
     path('observadores/', views.ins_Observadores, name='Observadores'),
     #path('', views.ClassListView.as_view(), name='enrolled_student'),

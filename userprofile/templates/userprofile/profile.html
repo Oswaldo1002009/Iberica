@@ -5,6 +5,13 @@
     <h4>Bienvenido: {{ user }}</h4>
     {% if enrolled %}
         <p>Clases inscritas:</p>
+        {% for inter in interdisciplinario %}
+        <p><strong>Interdisciplinario: </strong>
+            {% if inter.weeks == 'Dos semanas' %}Dos semanas
+            {% elif inter.weeks == 'Primera semana' %}Primera semana
+            {% elif inter.weeks == 'Segunda semana' %}Segunda semana
+            {% endif %}</p>
+        {% endfor %}
         {% for class in talleres_guitarra %}
         <p><strong>Taller de guitarra:</strong> {{ class.id_class }}</p>
         {% endfor %}

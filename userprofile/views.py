@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra, Observador
+from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra, Observador, Inter
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from .forms import CompleteProfile
@@ -17,7 +17,9 @@ def index(request):
         if enrolled is not None:
             talleres_guitarra = TallerGuitarra.objects.filter(id_enrolled=user)
             observadores = Observador.objects.filter(id_enrolled=user)
+            interdisciplinario = Inter.objects.filter(id_enrolled=user)
             context = {
+                'interdisciplinario': interdisciplinario,
                 'talleres_guitarra': talleres_guitarra,
                 'enrolled': enrolled,
                 'observadores': observadores,
@@ -48,6 +50,7 @@ def profile(request):
                 obj.user = request.user
                 obj.save()
                 return HttpResponseRedirect(reverse_lazy('userprofile'))
+            return render(request, 'schedule/enrolled_form.html', {'form': form})
 
         #Case logged user but enrolled form has not been completed
         form = CompleteProfile()

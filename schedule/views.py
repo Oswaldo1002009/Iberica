@@ -4,11 +4,50 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled
-from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm
+from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm
 
+def ins_Inter(request):
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+    if request.method == 'POST':
+        form = InterForm(request.POST)
+        if form.is_valid():
+            inter = form.save(commit=False)
+            inter.id_enrolled = request.user
+            #All empty
+            if not inter.week1_12 and not inter.week1_13 and not inter.week2_12 and not inter.week2_13:
+                error = "Necesitas inscribir al menos una semana completa"
+                return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                              'error': error})
+            #At least a week incomplete
+            if (inter.week1_12 and not inter.week1_13) or (not inter.week1_12 and inter.week1_13) or \
+               (inter.week2_12 and not inter.week2_13) or (not inter.week2_12 and inter.week2_13):
+                error = "No puedes inscribir semanas incompletas"
+                return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                              'error': error})
+            #Week 1 completed
+            if inter.week1_12 and inter.week1_13 and not inter.week2_12:
+                inter.weeks = "Primera semana"
+                inter.save()
+                return redirect(reverse('userprofile'))
+            #Week 2 completed
+            if inter.week2_12 and inter.week2_13 and not inter.week1_12:
+                inter.weeks = "Segunda semana"
+                inter.save()
+                return redirect(reverse('userprofile'))
+            #Both weeks completed
+            inter.weeks = "Dos semanas"
+            inter.save()
+            return redirect(reverse('userprofile'))
+        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form})
+    form = InterForm()
+    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form})
 
 def ins_TallerGuitarra(request):
-    # Case for Taller de Guitarra
     if request.user.is_authenticated:
         user = request.user
         try:
@@ -22,6 +61,7 @@ def ins_TallerGuitarra(request):
             new_class.id_enrolled = request.user
             new_class.save()
             return redirect(reverse('userprofile'))
+        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form})
     form = TallerGuitarraForm()
     return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form})
 
@@ -40,6 +80,7 @@ def ins_Observadores(request):
             new_class.id_enrolled = request.user
             new_class.save()
             return redirect(reverse('userprofile'))
+        return render(request, 'schedule/5-ObservadoresSemana.html', {'enrolled': enrolled, 'form': form})
     form = ObservadoresForm()
     return render(request, 'schedule/5-ObservadoresSemana.html', {'enrolled': enrolled, 'form': form})
 
