@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated and not user.is_staff %}
+{% if enrolled %}
+    <h3 id="Contenido">Selecciona el nivel</h3>
+    <select id="Nivel">
+        <option value="" selected="selected"></option>
+        <option value="n">Niños Básico</option>
+        <option value="b">Básico</option>
+        <option value="i">Intermedio</option>
+        <option value="a">Avanzado</option>
+    </select>
+
+    <form name="n" id="n" style="display:none">
+    <input type="text" value="1">
+    </form>
+
+    <form name="b" id="b" style="display:none">
+    <input type="text" value="2">
+    </form>
+
+    <form name="i" id="i" style="display:none">
+    <input type="text" value="3">
+    </form>
+
+    <form name="a" id="a" style="display:none">
+    <input type="text" value="4">
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+    $("#Nivel").on("change", function() {
+        $("#" + $(this).val()).show().siblings().hide();
+        /*$("#Contenido").text('Ahora selecciona la semana o semanas a cursar').show();*/
+        $("#Nivel").show();
+        $("#Contenido").show();
+    });
+    </script>
+{% else %}
+    <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
+    llenarlos</p>
+{% endif %}
+{% else %}
+    <p>Por favor inicia sesión para continuar</p>
+{% endif %}
+{% endblock %}
