@@ -253,8 +253,8 @@ class Inter(models.Model):
          'Cristóbal Reyes "Valoración del Flamenco"'),
         ('María Juncal "Técnica de Pies"',
          'María Juncal "Técnica de Pies"'),
-        ('José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado     (NUEVO)',
-         'José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado     (NUEVO)'),
+        ('José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO)',
+         'José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO)'),
         ('Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos',
          'Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos'),
         ('Raquel Ruiz "Neo Folk"',
@@ -399,3 +399,87 @@ class Elemental(models.Model):
 
     def __str__(self):
         return "%s %s %s" % (self.level, self.weeks, self.id_enrolled)
+
+class Independiente(models.Model):
+    id_enrolled = models.ForeignKey(User, related_name='Independiente_Enrolled', on_delete=models.CASCADE, db_index=True)
+    weeks = models.CharField(max_length=50, blank=True)
+    classes = models.CharField(max_length=1, blank=True)
+
+    P900 = (
+        ('NIÑOS INTERMEDIO - José Galán', 'NIÑOS INTERMEDIO - José Galán'),
+        ('NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)',
+         'NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)'),
+        ('NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)',
+         'NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)'),
+        ('NIVEL INTERMEDIO - El Carpeta (Bulerías)', 'NIVEL INTERMEDIO - El Carpeta (Bulerías)'),
+        ('NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)',
+         'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)'),
+        ('NIVEL AVANZADO - Valeriano Paños (Martinete)',
+         'NIVEL AVANZADO - Valeriano Paños (Martinete)'),
+        ('NIVEL PROFESIONAL - Javier LaTorre', 'NIVEL PROFESIONAL - Javier LaTorre'),
+    )
+    P1035 = (
+        ('NIÑOS BÁSICO - Pablo Egea', 'NIÑOS BÁSICO - Pablo Egea'),
+        ('NIÑOS INTERMEDIO - El Carpeta (Seguiriyas)', 'NIÑOS INTERMEDIO - El Carpeta (Seguiriyas)'),
+        ('NIVEL BÁSICO - Valeriano Paños (Farruca)', 'NIVEL BÁSICO - Valeriano Paños (Farruca)'),
+        ('NIVEL INTERMEDIO - Rafael Estévez (Tangos)', 'NIVEL INTERMEDIO - Rafael Estévez (Tangos)'),
+        ('NIVEL INTERMEDIO - Nazaret Reyes (Caña)', 'NIVEL INTERMEDIO - Nazaret Reyes (Caña)'),
+        ('NIVEL AVANZADO - La Truco (Soleá)', 'NIVEL AVANZADO - La Truco (Soleá)'),
+        ('NIVEL AVANZADO - Javier LaTorre (Taranto)', 'NIVEL AVANZADO - Javier LaTorre (Taranto)'),
+    )
+    P1530 = (
+        ('NIVEL INTERMEDIO - María Juncal (Fandangos)', 'NIVEL INTERMEDIO - María Juncal (Fandangos)'),
+        ('NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)', 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)'),
+        ('NIVEL AVANZADO - Ana Morales (Soleá)', 'NIVEL AVANZADO - Ana Morales (Soleá)'),
+    )
+    P1705 = (
+        ('NIVEL INTERMEDIO - Ana Morales (Alegrías de Córdoba)', 'NIVEL INTERMEDIO - Ana Morales (Alegrías de Córdoba)'),
+        ('NIVEL AVANZADO - María Juncal (Guajira)', 'NIVEL AVANZADO - María Juncal (Guajira)'),
+        ('NIVEL AVANZADO - Pedro Córdoba (Martinete)', 'NIVEL AVANZADO - Pedro Córdoba (Martinete)'),
+    )
+    S900 = (
+        ('NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías)', 'NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías)'),
+        ('NIVEL BÁSICO - José Galán', 'NIVEL BÁSICO - José Galán'),
+        ('NIVEL INTERMEDIO - El Carpeta (Seguiriyas)', 'NIVEL INTERMEDIO - El Carpeta (Seguiriyas)'),
+        ('NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías)', 'NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías)'),
+        ('NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)',
+         'NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)'),
+        ('NIVEL AVANZADO - Ana Morales (Seguiriya)', 'NIVEL AVANZADO - Ana Morales (Seguiriya)'),
+        ('NIVEL PROFESIONAL - Pedro Córdoba', 'NIVEL PROFESIONAL - Pedro Córdoba'),
+    )
+    S1035 = (
+        ('NIÑOS BÁSICO - El Carpeta (Alegría)', 'NIÑOS BÁSICO - El Carpeta (Alegría)'),
+        ('NIÑOS INTERMEDIO - María Juncal (Tientos)', 'NIÑOS INTERMEDIO - María Juncal (Tientos)'),
+        ('NIVEL BÁSICO - Nazaret Reyes (Tangos)', 'NIVEL BÁSICO - Nazaret Reyes (Tangos)'),
+        ('NIVEL INTERMEDIO - Ana Morales (Guajira)', 'NIVEL INTERMEDIO - Ana Morales (Guajira)'),
+        ('NIVEL INTERMEDIO - María Moreno (Romance)', 'NIVEL INTERMEDIO - María Moreno (Romance)'),
+        ('NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)', 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)'),
+        ('NIVEL AVANZADO - Eduardo Guerrero (Fandango)', 'NIVEL AVANZADO - Eduardo Guerrero (Fandango)'),
+    )
+    S1530 = (
+        ('NIVEL INTERMEDIO - Karen Lugo (Bambera)', 'NIVEL INTERMEDIO - Karen Lugo (Bambera)'),
+        ('NIVEL AVANZADO - La Truco (Seguiriya)', 'NIVEL AVANZADO - La Truco (Seguiriya)'),
+        ('NIVEL AVANZADO - Javier LaTorre (Alegrías)', 'NIVEL AVANZADO - Javier LaTorre (Alegrías)'),
+    )
+    S1705 = S1530 = (
+        ('NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías)',
+         'NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías)'),
+        ('NIVEL AVANZADO - Javier LaTorre (Farruca)', 'NIVEL AVANZADO - Javier LaTorre (Farruca)'),
+        ('NIVEL AVANZADO - Karen Lugo (Martinete)', 'NIVEL AVANZADO - Karen Lugo (Martinete)'),
+    )
+
+    p9 = models.CharField(max_length=150, choices=P900, blank=True)
+    p10 = models.CharField(max_length=150, choices=P1035, blank=True)
+    p3 = models.CharField(max_length=150, choices=P1530, blank=True)
+    p5 = models.CharField(max_length=150, choices=P1705, blank=True)
+    s9 = models.CharField(max_length=150, choices=S900, blank=True)
+    s10 = models.CharField(max_length=150, choices=S1035, blank=True)
+    s3 = models.CharField(max_length=150, choices=S1530, blank=True)
+    s5 = models.CharField(max_length=150, choices=S1705, blank=True)
+
+    class Meta:
+        verbose_name = 'Independiente'
+        verbose_name_plural = 'Independientes'
+
+    def __str__(self):
+        return "%s %s" % (self.weeks, self.id_enrolled)

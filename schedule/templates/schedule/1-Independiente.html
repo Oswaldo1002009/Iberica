@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated and not user.is_staff %}
+{% if enrolled %}
+    {% if error %}<p>{{ error }}</p>{% endif %}
+    <h3 id="Contenido">Selecciona la semana a cursar</h3>
+    <select id="semana">
+        <option value="" selected="selected" disabled>Selecciona el periodo</option>
+        <option value="p">8 - 12 de julio (primera semana)</option>
+        <option value="s">15 - 19 de julio (segunda semana)</option>
+    </select>
+
+    <div name="p" id="p" style="display:none">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <h4>Selecciona al menos uno de los cursos</h4>
+            <table>
+                <tr><th colspan="2"><h5><strong>Primera semana</strong></h5></th></tr>
+                <tr><th>9:00 am - 10:30 am</th><td>{{ form.p9 }}</td></tr>
+                <tr><th>10:35 am - 12:05 pm</th><td>{{ form.p10 }}</td></tr>
+                <tr><th>3:30 pm - 5:00 pm</th><td>{{ form.p3 }}</td></tr>
+                <tr><th>5:05 pm - 6:35 pm</th><td>{{ form.p5 }}</td></tr>
+                <tr><th colspan="2"><br></th></tr>
+            </table>
+            <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="p"/>
+            <a href="{% url 'userprofile' %}">Regresar</a>
+        </form>
+    </div>
+
+    <div name="s" id="s" style="display:none">
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <h4>Selecciona al menos uno de los cursos</h4>
+            <table>
+                <tr><th colspan="2"><h5><strong>Segunda semana</strong></h5></th></tr>
+                <tr><th>9:00 am - 10:30 am</th><td>{{ form.s9 }}</td></tr>
+                <tr><th>10:35 am - 12:05 pm</th><td>{{ form.s10 }}</td></tr>
+                <tr><th>3:30 pm - 5:00 pm</th><td>{{ form.s3 }}</td></tr>
+                <tr><th>5:05 pm - 6:35 pm</th><td>{{ form.s5 }}</td></tr>
+                <tr><th colspan="2"><br></th></tr>
+            </table>
+            <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="s"/>
+            <a href="{% url 'userprofile' %}">Regresar</a>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+    $("#semana").on("change", function() {
+        $("#p").hide();
+        $("#s").hide();
+        $("#" + $(this).val()).show();
+    });
+    </script>
+{% else %}
+    <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
+    llenarlos</p>
+{% endif %}
+{% else %}
+    <p>Por favor inicia sesión para continuar</p>
+{% endif %}
+{% endblock %}

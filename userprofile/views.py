@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra, Observador, Inter, Intensivo, Elemental
+from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra, Observador, Inter, Intensivo, Elemental,\
+    Independiente
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 from .forms import CompleteProfile
@@ -20,6 +21,7 @@ def index(request):
             interdisciplinario = Inter.objects.filter(id_enrolled=user)
             intensivo = Intensivo.objects.filter(id_enrolled=user)
             elemental = Elemental.objects.filter(id_enrolled=user)
+            independiente = Independiente.objects.filter(id_enrolled=user)
             context = {
                 'elemental': elemental,
                 'intensivo': intensivo,
@@ -27,6 +29,7 @@ def index(request):
                 'talleres_guitarra': talleres_guitarra,
                 'enrolled': enrolled,
                 'observadores': observadores,
+                'independiente': independiente,
             }
             return render(request, 'userprofile/profile.html', context)
     return render(request, 'userprofile/profile.html')
