@@ -294,6 +294,10 @@ class Inter(models.Model):
 
 class Intensivo(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Intensivo_Enrolled', on_delete=models.CASCADE, db_index=True)
+    level = models.CharField(max_length=20, blank=True)
+    weeks = models.CharField(max_length=50, blank=True)
+    turn = models.CharField(max_length=50, blank=True)
+
     NIWEEK1_9 = (('José Galán', 'José Galán'),)
     NIWEEK1_10 = (('Manuel Fernández "El carpeta" (Seguiriyas)', 'Manuel Fernández "El carpeta" (Seguiriyas)'),)
     NIWEEK2_9 = (('Nazaret Reyes (Alegrías)', 'Nazaret Reyes (Alegrías)'),)
@@ -353,6 +357,7 @@ class Intensivo(models.Model):
                 ('La Truco (Seguiriya)', 'La Truco (Seguiriya)'),)
     AWEEK2_5 = (('Karen Lugo (Martinete)', 'Karen Lugo (Martinete)'),
                 ('Javier LaTorre (Farruca)', 'Javier LaTorre (Farruca)'),)
+
     a1m1 = models.CharField(max_length=150, choices=AWEEK1_9, blank=True)
     a1m2 = models.CharField(max_length=150, choices=AWEEK1_10, blank=True)
     a1v1 = models.CharField(max_length=150, choices=AWEEK1_3, blank=True)
@@ -362,5 +367,9 @@ class Intensivo(models.Model):
     a2v1 = models.CharField(max_length=150, choices=AWEEK2_3, blank=True)
     a2v2 = models.CharField(max_length=150, choices=AWEEK2_5, blank=True)
 
-    level = models.CharField(max_length=20, blank=True)
-    weeks = models.CharField(max_length=50, blank=True)
+    class Meta:
+        verbose_name = 'Intensivo'
+        verbose_name_plural = 'Intensivos'
+
+    def __str__(self):
+        return "%s %s %s %s" % (self.level, self.weeks, self.turn, self.id_enrolled)
