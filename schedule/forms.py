@@ -1,6 +1,23 @@
 from django import forms
-from .models import ClassEnrolled, Groups, TallerGuitarra, Observador, Inter, Intensivo, Elemental
+from .models import ClassEnrolled, Groups, TallerGuitarra, Observador, Inter, Intensivo, Elemental, Independiente
 from django.utils.translation import ugettext_lazy as _
+
+class IndependienteForm(forms.ModelForm):
+    class Meta:
+        model = Independiente
+        fields = ('p9', 'p10', 'p3', 'p5', 's9', 's10', 's3', 's5')
+        exclude = ('id_enrolled', 'weeks', 'classes')
+        labels = {
+            'p9': _('9:00 am - 10:30 am'),
+            'p10': _('10:35 am - 12:05 pm'),
+            'p3': _('3:30 pm - 5:00 pm'),
+            'p5': _('5:05 pm - 6:35 pm'),
+            's9': _('9:00 am - 10:30 am'),
+            's10': _('10:35 am - 12:05 pm'),
+            's3': _('3:30 pm - 5:00 pm'),
+            's5': _('5:05 pm - 6:35 pm'),
+        }
+
 
 class ElementalForm(forms.ModelForm):
     class Meta:

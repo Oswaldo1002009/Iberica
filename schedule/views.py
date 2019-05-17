@@ -4,8 +4,9 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo
-from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm
+from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente
+from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm, \
+    IndependienteForm
 
 
 def ins_Inter(request):
@@ -579,6 +580,69 @@ def ins_Intensivo(request):
         form = IntensivoForm()
         return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form})
     return render(request, 'schedule/3-Intensivo.html', {'form': form})
+
+
+def ins_Independiente(request):
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+
+        # Primera semana
+        if request.method == 'POST' and 'p' in request.POST:
+            form = IndependienteForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                i = 0
+                if new_class.p9:
+                    i = i + 1
+                if new_class.p10:
+                    i = i + 1
+                if new_class.p3:
+                    i = i + 1
+                if new_class.p5:
+                    i = i + 1
+                if i == 0:
+                    error = "Necesitas inscribir al menos una clase"
+                    return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.weeks = "Primera semana"
+                new_class.classes = i
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form})
+
+        # Primera semana
+        if request.method == 'POST' and 's' in request.POST:
+            form = IndependienteForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                i = 0
+                if new_class.s9:
+                    i = i + 1
+                if new_class.s10:
+                    i = i + 1
+                if new_class.s3:
+                    i = i + 1
+                if new_class.s5:
+                    i = i + 1
+                if i == 0:
+                    error = "Necesitas inscribir al menos una clase"
+                    return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.weeks = "Segunda semana"
+                new_class.classes = i
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form})
+
+        form = IndependienteForm()
+        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form})
+    return render(request, 'schedule/1-Independiente.html', {'form': form})
 
 
 def inscription(request):

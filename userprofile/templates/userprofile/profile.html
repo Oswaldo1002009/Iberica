@@ -5,6 +5,9 @@
     <h4>Bienvenido: {{ user }}</h4>
     {% if enrolled %}
         <p>Clases inscritas:</p>
+        {% for inde in independiente %}
+        <p><strong>Curso Independiente: </strong>{{inde.weeks}}, {{ inde.classes }} clase{% if not inde.classes == '1' %}s{% endif %}</p>
+        {% endfor %}
         {% for ele in elemental %}
         <p><strong>P. Elemental: </strong>{{ele.level}}, {{ ele.weeks }}</p>
         {% endfor %}
