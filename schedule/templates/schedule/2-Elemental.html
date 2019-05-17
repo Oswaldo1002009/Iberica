@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated and not user.is_staff %}
+{% if enrolled %}
+    {% if error %}<p>{{ error }}</p>{% endif %}
+    <h3 id="Contenido">Selecciona el nivel</h3>
+    <select id="Nivel">
+        <option value="" selected="selected" disabled>Selecciona un nivel</option>
+        <option value="n">Niños básico</option>
+        <option value="j">Jóvenes y Adultos Básico</option>
+    </select>
+    <div name="n" id="n" style="display:none">
+        <h4>Selecciona la cantidad de semanas</h4>
+        <select id="nselect">
+            <option value="" selected="selected" disabled> Selecciona un periodo</option>
+            <option value="nP">8 - 12 julio: Primera semana</option>
+            <option value="nS">15 - 19 julio: Segunda semana</option>
+            <option value="nD">8 -19 julio: Dos semanas</option>
+        </select>
+
+        <div name="nP" id="nP" style="display:none">
+            <form method="post" novalidate id="IntensivoForm">
+                {% csrf_token %}
+                <h4>Selecciona los horarios</h4>
+                <table>
+                    <tr><th colspan="2"><h5><strong>Primera semana</strong></h5></th></tr>
+                    <tr><th>10:35 am - 12:05 pm</th><td>{{ form.n1 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                </table>
+                <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="nP"/>
+                <a href="{% url 'userprofile' %}">Regresar</a>
+            </form>
+        </div>
+
+        <div name="nS" id="nS" style="display:none">
+            <form method="post" novalidate id="IntensivoForm">
+                {% csrf_token %}
+                <h4>Selecciona los horarios</h4>
+                <table>
+                    <tr><th colspan="2"><h5><strong>Segunda semana</strong></h5></th></tr>
+                    <tr><th>10:35 am - 12:05 pm</th><td>{{ form.n2 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                </table>
+                <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="nS"/>
+                <a href="{% url 'userprofile' %}">Regresar</a>
+            </form>
+        </div>
+
+        <div name="nD" id="nD" style="display:none">
+            <form method="post" novalidate id="IntensivoForm">
+                {% csrf_token %}
+                <h4>Selecciona los horarios</h4>
+                <table>
+                    <tr><th colspan="2"><h5><strong>Primera semana</strong></h5></th></tr>
+                    <tr><th>10:35 am - 12:05 pm</th><td>{{ form.n1 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                    <tr><th colspan="2"><h5><strong>Segunda semana</strong></h5></th></tr>
+                    <tr><th>10:35 am - 12:05 pm</th><td>{{ form.n2 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                </table>
+                <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="nD"/>
+                <a href="{% url 'userprofile' %}">Regresar</a>
+            </form>
+        </div>
+    </div>
+
+    <div name="j" id="j" style="display:none">
+        <h4>Selecciona la cantidad de semanas</h4>
+        <select id="jselect">
+            <option value="" selected="selected" disabled> Selecciona un periodo</option>
+            <option value="jP">8 - 12 julio: Primera semana</option>
+            <option value="jS">15 - 19 julio: Segunda semana</option>
+            <option value="jD">8 -19 julio: Dos semanas</option>
+        </select>
+
+        <div name="jP" id="jP" style="display:none">
+            <form method="post" novalidate id="IntensivoForm">
+                {% csrf_token %}
+                <h4>Selecciona los horarios</h4>
+                <table>
+                    <tr><th colspan="2"><h5><strong>Primera semana</strong></h5></th></tr>
+                    <tr><th>9:00 am - 12:05 pm</th><td>{{ form.j1 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                </table>
+                <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="jP"/>
+                <a href="{% url 'userprofile' %}">Regresar</a>
+            </form>
+        </div>
+
+        <div name="jS" id="jS" style="display:none">
+            <form method="post" novalidate id="IntensivoForm">
+                {% csrf_token %}
+                <h4>Selecciona los horarios</h4>
+                <table>
+                    <tr><th colspan="2"><h5><strong>Segunda semana</strong></h5></th></tr>
+                    <tr><th>9:00 am - 12:05 pm</th><td>{{ form.j2 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                </table>
+                <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="jS"/>
+                <a href="{% url 'userprofile' %}">Regresar</a>
+            </form>
+        </div>
+
+        <div name="jD" id="jD" style="display:none">
+            <form method="post" novalidate id="IntensivoForm">
+                {% csrf_token %}
+                <h4>Selecciona los horarios</h4>
+                <table>
+                    <tr><th colspan="2"><h5><strong>Primera semana</strong></h5></th></tr>
+                    <tr><th>9:00 am - 12:05 pm</th><td>{{ form.j1 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                    <tr><th colspan="2"><h5><strong>Segunda semana</strong></h5></th></tr>
+                    <tr><th>9:00 am - 12:05 pm</th><td>{{ form.j2 }}</td></tr>
+                    <tr><th colspan="2"><br></th></tr>
+                </table>
+                <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar" name="jD"/>
+                <a href="{% url 'userprofile' %}">Regresar</a>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+    $("#Nivel").on("change", function() {
+        $("#n").hide();
+        $("#j").hide();
+        $("#" + $(this).val()).show();
+    });
+
+    $("#nselect").on("change", function() {
+        $("#nP").hide();
+        $("#nS").hide();
+        $("#nD").hide();
+        $("#" + $(this).val()).show();
+    });
+
+    $("#jselect").on("change", function() {
+        $("#jP").hide();
+        $("#jS").hide();
+        $("#jD").hide();
+        $("#" + $(this).val()).show();
+    });
+    </script>
+{% else %}
+    <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
+    llenarlos</p>
+{% endif %}
+{% else %}
+    <p>Por favor inicia sesión para continuar</p>
+{% endif %}
+{% endblock %}

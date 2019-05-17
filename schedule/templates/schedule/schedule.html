@@ -4,6 +4,9 @@
 {% if user.is_authenticated and not user.is_staff %}
     <h4>¿A qué programa deseas inscribirte?</h4>
     {% if enrolled %}
+        <a href="{% url 'Elemental' %}"><button>Programa Elemental</button></a>
+        <a href="{% url 'Intensivo' %}"><button>Programa Intensivo</button></a>
+        <a href="{% url 'Interdisciplinario' %}"><button> Programa Interdisciplinario</button></a>
         <a href="{% url 'TallerGuitarra' %}"><button>Talleres de Guitarra</button></a>
         <a href="{% url 'Observadores' %}"><button>Observadores</button></a>
     {% else %}
