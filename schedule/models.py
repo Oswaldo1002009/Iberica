@@ -373,3 +373,29 @@ class Intensivo(models.Model):
 
     def __str__(self):
         return "%s %s %s %s" % (self.level, self.weeks, self.turn, self.id_enrolled)
+
+
+class Elemental(models.Model):
+    id_enrolled = models.ForeignKey(User, related_name='Elemental_Enrolled', on_delete=models.CASCADE, db_index=True)
+    level = models.CharField(max_length=20, blank=True)
+    weeks = models.CharField(max_length=50, blank=True)
+
+    NBWEEK1 = (('Pablo Egea', 'Pablo Egea'),)
+    NBWEEK2 = (('El Carpeta (Alegría)', 'El Carpeta (Alegría)'),)
+    JABWEEK1 = (('9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)',
+                 '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)'),
+                ('10:35 am - 12:05 pm | Valeriano Paños (Farruca)', '10:35 am - 12:05 pm | Valeriano Paños (Farruca)'),)
+    JABWEEK2 = (('9:00 am - 10:30 am | José Galán', '9:00 am - 10:30 am | José Galán'),
+                ('10:35 am - 12:05 pm | Nazaret Reyes (Tangos)', '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)'),)
+
+    n1 = models.CharField(max_length=150, choices=NBWEEK1, blank=True)
+    n2 = models.CharField(max_length=150, choices=NBWEEK2, blank=True)
+    j1 = models.CharField(max_length=150, choices=JABWEEK1, blank=True)
+    j2 = models.CharField(max_length=150, choices=JABWEEK2, blank=True)
+
+    class Meta:
+        verbose_name = 'Elemental'
+        verbose_name_plural = 'Elementales'
+
+    def __str__(self):
+        return "%s %s %s" % (self.level, self.weeks, self.id_enrolled)

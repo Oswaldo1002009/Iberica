@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo
-from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm
+from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm
 
 
 def ins_Inter(request):
@@ -91,6 +91,115 @@ def ins_Observadores(request):
     return render(request, 'schedule/5-ObservadoresSemana.html', {'form': form})
 
 
+def ins_Elemental(request):
+    if request.user.is_authenticated:
+        user = request.user
+        try:
+            enrolled = Enrolled.objects.get(user=user)
+        except Enrolled.DoesNotExist:
+            enrolled = None
+
+        # Niños básico primera semana
+        if request.method == 'POST' and 'nP' in request.POST:
+            form = ElementalForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                if not new_class.n1:
+                    error = "Necesitas llenar todo el formulario"
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.level = "Niños Básico"
+                new_class.weeks = "Primera semana"
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/2-Elemental.htmll', {'enrolled': enrolled, 'form': form})
+
+        # Niños básico segunda semana
+        if request.method == 'POST' and 'nS' in request.POST:
+            form = ElementalForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                if not new_class.n2:
+                    error = "Necesitas llenar todo el formulario"
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.level = "Niños Básico"
+                new_class.weeks = "Segunda semana"
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/2-Elemental.htmll', {'enrolled': enrolled, 'form': form})
+
+        # Niños básico dos semanas
+        if request.method == 'POST' and 'nD' in request.POST:
+            form = ElementalForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                if not new_class.n2 or not new_class.n1:
+                    error = "Necesitas llenar todo el formulario"
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.level = "Niños Básico"
+                new_class.weeks = "Dos semanas"
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/2-Elemental.htmll', {'enrolled': enrolled, 'form': form})
+
+        # Jóvenes y Adultos básico primera semana
+        if request.method == 'POST' and 'jP' in request.POST:
+            form = ElementalForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                if not new_class.j1:
+                    error = "Necesitas llenar todo el formulario"
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.level = "Jóvenes y Adultos"
+                new_class.weeks = "Primera semana"
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/2-Elemental.htmll', {'enrolled': enrolled, 'form': form})
+
+        # Jóvenes y Adultos básico segunda semana
+        if request.method == 'POST' and 'jS' in request.POST:
+            form = ElementalForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                if not new_class.j2:
+                    error = "Necesitas llenar todo el formulario"
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.level = "Jóvenes y Adultos"
+                new_class.weeks = "Segunda semana"
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/2-Elemental.htmll', {'enrolled': enrolled, 'form': form})
+
+        # Jóvenes y Adultos básico dos semanas
+        if request.method == 'POST' and 'jD' in request.POST:
+            form = ElementalForm(request.POST)
+            if form.is_valid():
+                new_class = form.save(commit=False)
+                new_class.id_enrolled = request.user
+                if not new_class.j2 or not new_class.j1:
+                    error = "Necesitas llenar todo el formulario"
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
+                                                                         'error': error})
+                new_class.level = "Jóvenes y Adultos"
+                new_class.weeks = "Dos semanas"
+                new_class.save()
+                return redirect(reverse('userprofile'))
+            return render(request, 'schedule/2-Elemental.htmll', {'enrolled': enrolled, 'form': form})
+
+        form = ElementalForm()
+        return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form})
+    return render(request, 'schedule/2-Elemental.html', {'form': form})
+
+
 def ins_Intensivo(request):
     if request.user.is_authenticated:
         user = request.user
@@ -99,7 +208,7 @@ def ins_Intensivo(request):
         except Enrolled.DoesNotExist:
             enrolled = None
 
-        #Niños intermedio primera semana
+        # Niños intermedio primera semana
         if request.method == 'POST' and 'nP' in request.POST:
             form = IntensivoForm(request.POST)
             if form.is_valid():
@@ -108,14 +217,14 @@ def ins_Intensivo(request):
                 if not new_class.n1m1 or not new_class.n1m2:
                     error = "Necesitas llenar todo el formulario"
                     return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                              'error': error})
+                                                                         'error': error})
                 new_class.level = "Niños Intermedio"
                 new_class.weeks = "Primera semana"
                 new_class.save()
                 return redirect(reverse('userprofile'))
             return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form})
 
-        #Niños intermedio segunda semana
+        # Niños intermedio segunda semana
         if request.method == 'POST' and 'nS' in request.POST:
             form = IntensivoForm(request.POST)
             if form.is_valid():
@@ -124,14 +233,14 @@ def ins_Intensivo(request):
                 if not new_class.n2m1 or not new_class.n2m2:
                     error = "Necesitas llenar todo el formulario"
                     return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                              'error': error})
+                                                                         'error': error})
                 new_class.level = "Niños Intermedio"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
                 return redirect(reverse('userprofile'))
             return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form})
 
-        #Niños intermedio dos semanas
+        # Niños intermedio dos semanas
         if request.method == 'POST' and 'nD' in request.POST:
             form = IntensivoForm(request.POST)
             if form.is_valid():
@@ -140,7 +249,7 @@ def ins_Intensivo(request):
                 if not new_class.n1m1 or not new_class.n1m2 and not new_class.n2m1 or not new_class.n2m2:
                     error = "Necesitas llenar todo el formulario"
                     return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                              'error': error})
+                                                                         'error': error})
                 new_class.level = "Niños Intermedio"
                 new_class.weeks = "Dos semanas"
                 new_class.save()
