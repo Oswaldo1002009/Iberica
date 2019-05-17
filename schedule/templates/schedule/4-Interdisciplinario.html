@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated and not user.is_staff %}
+    <h4>Selecciona tus semanas</h4>
+    {% if enrolled %}
+        <form method="post" novalidate id="InterForm">
+          {% csrf_token %}
+            {% if error %}{{ error }}{% endif %}
+            <table>
+              <tr><th colspan="2"><h5><strong>Primera semana</strong></h5></th></tr>
+              <tr><th>12:00 - 13:30</th><td>{{ form.week1_12 }}</td></tr>
+              <tr><th>13:35 - 15:05</th><td>{{ form.week1_13 }}</td></tr>
+              <tr><th colspan="2"><br></th></tr>
+              <tr><th colspan="2"><h5><strong>Segunda semana</strong></h5></th></tr>
+              <tr><th>12:00 - 13:30</th><td>{{ form.week2_12 }}</td></tr>
+              <tr><th>13:35 - 15:05</th><td>{{ form.week2_13 }}</td></tr>
+          </table>
+          <input type="submit" onclick="return confirm('¿Deseas confirmar tu inscripción?')" value="Guardar"/>
+          <a href="{% url 'userprofile' %}">Regresar</a>
+        </form>
+    {% else %}
+        <p>Parece que no has ingresado tus datos aún. Haz clic <a href="{% url 'profileform' %}">aquí</a> para
+        llenarlos</p>
+    {% endif %}
+    {% else %}
+        <p>Por favor inicia sesión para continuar</p>
+    {% endif %}
+{% endblock %}

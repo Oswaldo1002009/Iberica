@@ -5,6 +5,15 @@
     <h4>Bienvenido: {{ user }}</h4>
     {% if enrolled %}
         <p>Clases inscritas:</p>
+        {% for ele in elemental %}
+        <p><strong>P. Elemental: </strong>{{ele.level}}, {{ ele.weeks }}</p>
+        {% endfor %}
+        {% for inten in intensivo %}
+        <p><strong>P. Intensivo: </strong>{{inten.level}}, {{ inten.weeks }}{% if inten.turn %}, {{ inten.turn }}{% endif %}</p>
+        {% endfor %}
+        {% for inter in interdisciplinario %}
+        <p><strong>P. interdisciplinario: </strong>{{ inter.weeks }}</p>
+        {% endfor %}
         {% for class in talleres_guitarra %}
         <p><strong>Taller de guitarra:</strong> {{ class.id_class }}</p>
         {% endfor %}
