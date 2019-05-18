@@ -2,6 +2,7 @@
 
 {% block content %}
 {% if user.is_authenticated and not user.is_staff %}
+    {% if error %}<p>{{ error }}</p>{% endif %}
     <h4>Selecciona tu taller</h4>
     {% if enrolled %}
         <form method="post" novalidate id="TallerGuitarraForm">

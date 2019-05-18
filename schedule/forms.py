@@ -81,10 +81,12 @@ class InterForm(forms.ModelForm):
 class TallerGuitarraForm(forms.ModelForm):
     class Meta:
         model = TallerGuitarra
-        fields = ('id_class',)
-        exclude = ('id_enrolled',)
+        fields = ('s1', 's2', 's3')
+        exclude = ('id_enrolled', 'classes')
         labels = {
-            'id_class': _('Taller'),
+            's1': _('Taller 1'),
+            's2': _('Taller 2'),
+            's3': _('Taller 3'),
         }
 
 

@@ -178,11 +178,20 @@ class ClassEnrolled(models.Model):
 
 class TallerGuitarra(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Guitar_Enrolled', on_delete=models.CASCADE, db_index=True)
-    CLASSES = (
-        ('8-12 julio: 2 talleres', '8-12 julio: 2 talleres'),
-        ('8-12 julio: 1 taller', '8-12 julio: 1 taller'),
+    classes = models.CharField(max_length=1, blank=True)
+    CLASSES1 = (
+        ('8-12 julio, 9:00 am - 12:00 pm: Román Vicenti', '8-12 julio, 9:00 am - 12:00 pm: Román Vicenti'),
     )
-    id_class = models.CharField(max_length=30, choices=CLASSES)
+    CLASSES2 = (
+        ('15-17 julio, 9:00 am - 12:00 pm: Oscar Lagos', '15-17 julio, 9:00 am - 12:00 pm: Oscar Lagos'),
+    )
+    CLASSES3 = (
+        ('18-20 julio, 9:00 am - 12:00 pm: Antonio Campos y Jose Luis Medina',
+         '18-20 julio, 9:00 am - 12:00 pm: Antonio Campos y Jose Luis Medina'),
+    )
+    s1 = models.CharField(max_length=100, choices=CLASSES1, blank=True)
+    s2 = models.CharField(max_length=100, choices=CLASSES2, blank=True)
+    s3 = models.CharField(max_length=100, choices=CLASSES3, blank=True)
 
     class Meta:
         verbose_name = 'Taller de Guitarra'

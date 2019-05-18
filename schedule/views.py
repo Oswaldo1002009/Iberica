@@ -64,6 +64,18 @@ def ins_TallerGuitarra(request):
             if form.is_valid():
                 new_class = form.save(commit=False)
                 new_class.id_enrolled = request.user
+                i = 0
+                if new_class.s1:
+                    i = i + 1
+                if new_class.s2:
+                    i = i + 1
+                if new_class.s3:
+                    i = i + 1
+                if i == 0:
+                    error = "Necesitas inscribir al menos una clase"
+                    return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form,
+                                                                             'error': error})
+                new_class.classes = i
                 new_class.save()
                 return redirect(reverse('userprofile'))
             return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form})

@@ -1,0 +1,9 @@
+{% if user.is_authenticated and user.is_staff %}
+<h4>Bienvenido: {{ user }}</h4>
+<h3 id="programas">Selecciona el programa a consultar</h3>
+<select id="semana">
+    <option value="" selected="selected" disabled>Selecciona un programa</option>
+    <option value="1">Programa independiente</option>
+    <option value="2">Programa elemental</option>
+</select>
+{% endif %}

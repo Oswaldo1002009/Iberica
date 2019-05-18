@@ -10,6 +10,11 @@ from core.models import UserProfileInfo
 
 def index(request):
     if request.user.is_authenticated:
+        if request.user.is_staff:
+            user = request.user
+            context = {
+            }
+            return render(request, 'userprofile/admin.html', context)
         user = request.user
         try:
             enrolled = Enrolled.objects.get(user=user)
