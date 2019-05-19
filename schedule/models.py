@@ -179,6 +179,7 @@ class ClassEnrolled(models.Model):
 class TallerGuitarra(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Guitar_Enrolled', on_delete=models.CASCADE, db_index=True)
     classes = models.CharField(max_length=1, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
     CLASSES1 = (
         ('8-12 julio, 9:00 am - 12:00 pm: Román Vicenti', '8-12 julio, 9:00 am - 12:00 pm: Román Vicenti'),
     )
@@ -202,6 +203,7 @@ class TallerGuitarra(models.Model):
     
 class Observador(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Observer_Enrolled', on_delete=models.CASCADE, db_index=True)
+    created = models.DateTimeField(auto_now_add=True)
     CHOICES = (
         ('8-12 julio (Semana 1)', '8-19 julio (Semana 1)'),
         ('15-19 julio (Semana 2)', '15-19 julio (Semana 2)'),
@@ -219,6 +221,7 @@ class Observador(models.Model):
 
 class Inter(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Inter_Enrolled', on_delete=models.CASCADE, db_index=True)
+    created = models.DateTimeField(auto_now_add=True)
     WEEK1_12 = (
         ('Cristóbal Reyes "Valoración del Flamenco"',
          'Cristóbal Reyes "Valoración del Flamenco"'),
@@ -306,6 +309,7 @@ class Intensivo(models.Model):
     level = models.CharField(max_length=20, blank=True)
     weeks = models.CharField(max_length=50, blank=True)
     turn = models.CharField(max_length=50, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     NIWEEK1_9 = (('José Galán', 'José Galán'),)
     NIWEEK1_10 = (('Manuel Fernández "El carpeta" (Seguiriyas)', 'Manuel Fernández "El carpeta" (Seguiriyas)'),)
@@ -388,6 +392,7 @@ class Elemental(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Elemental_Enrolled', on_delete=models.CASCADE, db_index=True)
     level = models.CharField(max_length=20, blank=True)
     weeks = models.CharField(max_length=50, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     NBWEEK1 = (('Pablo Egea', 'Pablo Egea'),)
     NBWEEK2 = (('El Carpeta (Alegría)', 'El Carpeta (Alegría)'),)
@@ -413,6 +418,7 @@ class Independiente(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Independiente_Enrolled', on_delete=models.CASCADE, db_index=True)
     weeks = models.CharField(max_length=50, blank=True)
     classes = models.CharField(max_length=1, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     P900 = (
         ('NIÑOS INTERMEDIO - José Galán', 'NIÑOS INTERMEDIO - José Galán'),

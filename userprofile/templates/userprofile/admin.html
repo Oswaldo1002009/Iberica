@@ -1,9 +1,271 @@
 {% if user.is_authenticated and user.is_staff %}
+{% load i18n %}
+
+{% language 'es' %}
 <h4>Bienvenido: {{ user }}</h4>
-<h3 id="programas">Selecciona el programa a consultar</h3>
-<select id="semana">
+<h3 id="Contenido">Selecciona el programa a consultar</h3>
+<select id="programas">
     <option value="" selected="selected" disabled>Selecciona un programa</option>
-    <option value="1">Programa independiente</option>
-    <option value="2">Programa elemental</option>
+    <option value="1">Curso Independiente</option>
+    <option value="2">Programa Elemental</option>
+    <option value="3">Programa Intensivo</option>
+    <option value="4">Programa Interdisciplinario</option>
+    <option value="5">Observadores</option>
+    <option value="6">Talleres de Guitarra</option>
 </select>
+
+<div name="1" id="1" style="display:none">
+    <table id="tblData1">
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Periodo</th>
+                <th>Turno/Clases</th>
+                <th>Clases:Profesores</th>
+                <th>Fecha de inscripción</th>
+            </tr>
+            {% for inde in independiente %}
+            <tr>
+                <td>{{ inde.id }}</td>
+                <td><u>Curso Independiente</u></td>
+                <td>{{ inde.weeks }}</td>
+                <td>{{ inde.classes }} clase{% if not inde.classes == '1' %}s{% endif %}</td>
+                <td>
+                    <ul>
+                        {% if inde.p9 %}<li>{{ inde.p9 }}</li>{% endif %}
+                        {% if inde.p10 %}<li>{{ inde.p10 }}</li>{% endif %}
+                        {% if inde.p3 %}<li>{{ inde.p3 }}</li>{% endif %}
+                        {% if inde.p5 %}<li>{{ inde.p5 }}</li>{% endif %}
+                        {% if inde.s9 %}<li>{{ inde.s9 }}</li>{% endif %}
+                        {% if inde.s10 %}<li>{{ inde.s10 }}</li>{% endif %}
+                        {% if inde.s3 %}<li>{{ inde.s3 }}</li>{% endif %}
+                        {% if inde.s5 %}<li>{{ inde.s5 }}</li>{% endif %}
+                    </ul>
+                </td>
+                <td>{{ inde.created }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <button onclick="exportTableToExcel('tblData1', 'Curso_Independiente')">Exportar tabla a archivo de Excel</button>
+</div>
+
+<div name="2" id="2" style="display:none">
+    <table id="tblData2">
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Nivel</th>
+                <th>Periodo</th>
+                <th>Clases:Profesores</th>
+                <th>Fecha de inscripción</th>
+            </tr>
+            {% for ele in elemental %}
+            <tr>
+                <td>{{ ele.id }}</td>
+                <td><u>Programa elemental</u></td>
+                <td>{{ ele.level }}</td>
+                <td>{{ ele.weeks }}</td>
+                <td>
+                    <ul>
+                        {% if ele.n1 %}<li>{{ ele.n1 }}</li>{% endif %}
+                        {% if ele.n2 %}<li>{{ ele.n2 }}</li>{% endif %}
+                        {% if ele.j1 %}<li>{{ ele.j1 }}</li>{% endif %}
+                        {% if ele.j2 %}<li>{{ ele.j2 }}</li>{% endif %}
+                    </ul>
+                </td>
+                <td>{{ ele.created }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <button onclick="exportTableToExcel('tblData2', 'Programa_Elemental')">Exportar tabla a archivo de Excel</button>
+</div>
+
+<div name="3" id="3" style="display:none">
+    <table id="tblData3">
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Nivel</th>
+                <th>Periodo</th>
+                <th>Turno/Clases</th>
+                <th>Clases:Profesores</th>
+                <th>Fecha de inscripción</th>
+            </tr>
+            {% for inten in intensivo %}
+            <tr>
+                <td>{{ inten.id }}</td>
+                <td><u>Programa Intensivo</u></td>
+                <td>{{ inten.level }}</td>
+                <td>{{ inten.weeks }}</td>
+                <td>{% if inten.turn %}{{ inten.turn }}{% else %}N/A{% endif %}</td>
+                <td>
+                    <ul>
+                        {% if inten.n1m1 %}<li>{{ inten.n1m1 }}</li>{% endif %}
+                        {% if inten.n1m2 %}<li>{{ inten.n1m2 }}</li>{% endif %}
+                        {% if inten.n2m1 %}<li>{{ inten.n2m1 }}</li>{% endif %}
+                        {% if inten.n2m2 %}<li>{{ inten.n2m2 }}</li>{% endif %}
+
+                        {% if inten.b1m1 %}<li>{{ inten.b1m1 }}</li>{% endif %}
+                        {% if inten.b1m2 %}<li>{{ inten.b1m2 }}</li>{% endif %}
+                        {% if inten.b2m1 %}<li>{{ inten.b2m1 }}</li>{% endif %}
+                        {% if inten.b2m2 %}<li>{{ inten.b2m2 }}</li>{% endif %}
+
+                        {% if inten.i1m1 %}<li>{{ inten.i1m1 }}</li>{% endif %}
+                        {% if inten.i1m2 %}<li>{{ inten.i1m2 }}</li>{% endif %}
+                        {% if inten.i1v1 %}<li>{{ inten.i1v1 }}</li>{% endif %}
+                        {% if inten.i1v2 %}<li>{{ inten.i1v2 }}</li>{% endif %}
+                        {% if inten.i2m1 %}<li>{{ inten.i2m1 }}</li>{% endif %}
+                        {% if inten.i2m2 %}<li>{{ inten.i2m2 }}</li>{% endif %}
+                        {% if inten.i2v1 %}<li>{{ inten.i2v1 }}</li>{% endif %}
+                        {% if inten.i2v2 %}<li>{{ inten.i2v2 }}</li>{% endif %}
+
+                        {% if inten.a1m1 %}<li>{{ inten.a1m1 }}</li>{% endif %}
+                        {% if inten.a1m2 %}<li>{{ inten.a1m2 }}</li>{% endif %}
+                        {% if inten.a1v1 %}<li>{{ inten.a1v1 }}</li>{% endif %}
+                        {% if inten.a1v2 %}<li>{{ inten.a1v2 }}</li>{% endif %}
+                        {% if inten.a2m1 %}<li>{{ inten.a2m1 }}</li>{% endif %}
+                        {% if inten.a2m2 %}<li>{{ inten.a2m2 }}</li>{% endif %}
+                        {% if inten.a2v1 %}<li>{{ inten.a2v1 }}</li>{% endif %}
+                        {% if inten.a2v2 %}<li>{{ inten.a2v2 }}</li>{% endif %}
+                    </ul>
+                </td>
+                <td>{{ inten.created }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <button onclick="exportTableToExcel('tblData3', 'Programa_Elemental')">Exportar tabla a archivo de Excel</button>
+</div>
+
+<div name="4" id="4" style="display:none">
+    <table id="tblData4">
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Periodo</th>
+                <th>Clases:Profesores</th>
+                <th>Fecha de inscripción</th>
+            </tr>
+            {% for inter in interdisciplinario %}
+            <tr>
+                <td>{{ inter.id }}</td>
+                <td><u>Programa Interdisciplinario</u></td>
+                <td>{{ inter.weeks }}</td>
+                <td>
+                    <ul>
+                        {% if inter.week1_12 %}<li>{{ inter.week1_12 }}</li>{% endif %}
+                        {% if inter.week1_13 %}<li>{{ inter.week1_13 }}</li>{% endif %}
+                        {% if inter.week2_12 %}<li>{{ inter.week2_12 }}</li>{% endif %}
+                        {% if inter.week2_13 %}<li>{{ inter.week2_13 }}</li>{% endif %}
+                    </ul>
+                </td>
+                <td>{{ inter.created }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <button onclick="exportTableToExcel('tblData4', 'Programa_Interdisciplinario')">Exportar tabla a archivo de Excel</button>
+</div>
+
+<div name="5" id="5" style="display:none">
+    <table id="tblData5">
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Clases:Profesores</th>
+                <th>Fecha de inscripción</th>
+            </tr>
+            {% for obs in observadores %}
+            <tr>
+                <td>{{ obs.id }}</td>
+                <td><u>Observador</u></td>
+                <td>
+                    <ul>
+                        <li>{{ obs.id_class }}</li>
+                    </ul>
+                </td>
+                <td>{{ obs.created }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <button onclick="exportTableToExcel('tblData5', 'Observadores')">Exportar tabla a archivo de Excel</button>
+</div>
+
+<div name="6" id="6" style="display:none">
+    <table id="tblData6">
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Turno/Clases</th>
+                <th>Clases:Profesores</th>
+                <th>Fecha de inscripción</th>
+            </tr>
+            {% for class in talleres_guitarra %}
+            <tr>
+                <td>{{ class.id }}</td>
+                <td><u>Taller de guitarra</u></td>
+                <td>{{ class.classes }} clase{% if not class.classes == '1' %}s{% endif %}</td>
+                <td>
+                    <ul>
+                        {% if class.s1 %}<li>{{ class.s1 }}</li>{% endif %}
+                        {% if class.s2 %}<li>{{ class.s2 }}</li>{% endif %}
+                        {% if class.s3 %}<li>{{ class.s3 }}</li>{% endif %}
+                    </ul>
+                </td>
+                <td>{{ class.created }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <button onclick="exportTableToExcel('tblData6', 'Talleres_de_Guitarra')">Exportar tabla a archivo de Excel</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+$("#programas").on("change", function() {
+    $("#1").hide();
+    $("#2").hide();
+    $("#3").hide();
+    $("#4").hide();
+    $("#5").hide();
+    $("#6").hide();
+    $("#" + $(this).val()).show();
+});
+</script>
+<script>
+function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20').replace(/Ñ/g, '&Ntilde;')
+    .replace(/ñ/g, '&ntilde;').replace(/Á/g, '&Aacute;').replace(/É/g, '&Eacute;')
+    .replace(/Í/g, '&Iacute;').replace(/Ó/g, '&Oacute;').replace(/Ú/g, '&Uacute;')
+    .replace(/á/g, '&aacute;').replace(/é/g, '&eacute;').replace(/í/g, '&iacute;')
+    .replace(/ó/g, '&oacute;').replace(/ú/g, '&uacute;').replace(/Ü/g, '&Uuml;').replace(/ü/g, '&uuml;');
+
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+
+    // Create download link element
+    downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob([
+                        new Uint8Array([0xEF, 0xBB, 0xBF]), // UTF-8 BOM
+                        xls
+                        ],
+                        { type: "text/csv;charset=utf-8" });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+    }
+}
+</script>
+{% endlanguage %}
 {% endif %}

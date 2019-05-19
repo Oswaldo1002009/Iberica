@@ -12,7 +12,19 @@ def index(request):
     if request.user.is_authenticated:
         if request.user.is_staff:
             user = request.user
+            talleres_guitarra = TallerGuitarra.objects.all()
+            observadores = Observador.objects.all()
+            interdisciplinario = Inter.objects.all()
+            intensivo = Intensivo.objects.all()
+            elemental = Elemental.objects.all()
+            independiente = Independiente.objects.all()
             context = {
+                'elemental': elemental,
+                'intensivo': intensivo,
+                'interdisciplinario': interdisciplinario,
+                'talleres_guitarra': talleres_guitarra,
+                'observadores': observadores,
+                'independiente': independiente,
             }
             return render(request, 'userprofile/admin.html', context)
         user = request.user
