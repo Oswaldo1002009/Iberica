@@ -1,53 +1,46 @@
-{% extends 'base.html' %}
-
 {% block content %}
 <h2>Datos de identificación</h2>
 <br/><br/>
 <table>
-    <tr>
-        <td><strong>Nombre:</strong></td>
-        <td>{{ enrolled.name }} {{ enrolled.lastname }}</td>
-    </tr>
-    <tr>
-        <td><strong>Género:</strong></td>
-        <td>{{ enrolled.gender }}</td>
-    </tr>
-    <tr>
-        <td><strong>Fecha de nacimiento:</strong></td>
-        <td>{{ enrolled.birth_date|date:'d/m/Y' }}</td>
-    </tr>
-    <tr>
-        <td><strong>Teléfono:</strong></td>
-        <td>{{ enrolled.phone }}</td>
-    </tr>
-    <tr>
-        <td><strong>Dirección:</strong></td>
-        <td>{{ enrolled.address }}</td>
-    </tr>
-    <tr>
-        <td><strong>Ciudad:</strong></td>
-        <td>{{ enrolled.city }}</td>
-    </tr>
-    <tr>
-        <td><strong>País de origen:</strong></td>
-        <td>{{ enrolled.country }}</td>
-    </tr>
-    <tr>
-        <td><strong>Código postal:</strong></td>
-        <td>{{ enrolled.zip_code }}</td>
-    </tr>
-    <tr>
-        <td><strong>Academia:</strong></td>
-        <td>{{ enrolled.academy }}</td>
-    </tr>
-    <tr>
-        <td><strong>Enfermedades:</strong></td>
-        <td>{% if enrolled.disease %}{{ enrolled.disease }}{% else %}Ninguna{% endif %}</td>
-    </tr>
-    <tr>
-        <td><strong>Tipo de sangre:</strong></td>
-        <td>{{ enrolled.blood_type }}</td>
-    </tr>
+    <tr><th colspan="2"><h3><strong>Información personal</strong></h3></th></tr>
+    <tr><th>Nombre(s): </th><td>{{ enrolled.name }}</td></tr>
+    <tr><th>Apellido Paterno: </th><td>{{ enrolled.lastname }}</td></tr>
+    <tr><th>Apellido Materno: </th><td>{{ enrolled.lastname2 }}</td></tr>
+    <tr><th>Fecha de nacimiento: </th><td>{{ enrolled.birth_date }}</td></tr>
+    <tr><th>Género: </th><td>{{ enrolled.gender }}</td></tr>
+
+    <tr><th colspan="2"><br></th></tr>
+    <tr><th colspan="2"><h3><strong>Información de contacto</strong></h3></th></tr>
+    <tr><th>Correo electrónico:</th><td>{{ user.email }}</td></tr>
+    <tr><th>Teléfono: </th><td>{{ enrolled.phone }}</td></tr>
+
+    <tr><th colspan="2"><br></th></tr>
+    <tr><th colspan="2"><h3><strong>Domicilio</strong></h3></th></tr>
+    <tr><th>Calle y número: </th><td>{{ enrolled.street_number }}</td></tr>
+    <tr><th>Colonia: </th><td>{{ enrolled.suburb }}</td></tr>
+    <tr><th>Código Postal: </th><td>{{ enrolled.zip_code }}</td></tr>
+    <tr><th>Ciudad: </th><td>{{ enrolled.city }}</td></tr>
+    <tr><th>Estado: </th><td>{{ enrolled.state }}</td></tr>
+    <tr><th>País: </th><td>{{ enrolled.country }}</td></tr>
+
+    <tr><th colspan="2"><br></th></tr>
+    <tr><th colspan="2"><h3><strong>Datos curriculares</strong></h3></th></tr>
+    <tr><th>Escuela, Academia o Institución de Procedencia: </th><td>
+        {% if enrolled.academy %}{{ enrolled.academy }}{% else %}N/A{% endif %}
+    </td></tr>
+    <tr><th>Ciudad y país de la Academia: </th><td>
+        {% if enrolled.academy_country %}{{ enrolled.academy_country }}{% else %}N/A{% endif %}
+    </td></tr>
+
+    <tr><th colspan="2"><br></th></tr>
+    <tr><th colspan="2"><h3><strong>Contacto de emergencia</strong></h3></th></tr>
+    <tr><th>Nombre completo: </th><td>{{ enrolled.em_contact }}</td></tr>
+    <tr><th>Parentesco: </th><td>{{ enrolled.em_relationship }}</td></tr>
+    <tr><th>Teléfono móvil: </th><td>{{ enrolled.em_phone }}</td></tr>
+    <tr><th>Alergias o enfermedades: </th><td>
+        {% if enrolled.disease %}{{ enrolled.disease }}{% else %}N/A{% endif %}
+    </td></tr>
+    <tr><th>Tipo de sangre: </th><td>{{ enrolled.blood_type }}</td></tr>
 </table>
 
 {% endblock %}

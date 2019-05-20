@@ -1,13 +1,45 @@
-{% extends 'base.html' %}
-
 {% block content %}
       {% if user.is_authenticated and not user.is_staff %}
+        {% if error %}{{ error }}{% endif %}
         <h2>Ingresa tus datos de identificación</h2>
         <form method="post" novalidate id="CreateProfile">
           {% csrf_token %}
           <table>
-            {{ form.as_table }}
+              <tr><th colspan="2"><h3><strong>Información personal</strong></h3></th></tr>
+              <tr><th>*Nombre(s): </th><td>{{ form.name }}</td></tr>
+              <tr><th>*Apellido Paterno: </th><td>{{ form.lastname }}</td></tr>
+              <tr><th>*Apellido Materno: </th><td>{{ form.lastname2 }}</td></tr>
+              <tr><th>*Fecha de nacimiento: </th><td>{{ form.birth_date }}</td></tr>
+              <tr><th>*Género: </th><td>{{ form.gender }}</td></tr>
+
+              <tr><th colspan="2"><br></th></tr>
+              <tr><th colspan="2"><h3><strong>Información de contacto</strong></h3></th></tr>
+              <tr><th>Correo electrónico:</th><td><input type="text" disabled value="{{ user.email }}"></td></tr>
+              <tr><th>*Teléfono: </th><td>{{ form.phone }}</td></tr>
+
+              <tr><th colspan="2"><br></th></tr>
+              <tr><th colspan="2"><h3><strong>Domicilio</strong></h3></th></tr>
+              <tr><th>*Calle y número: </th><td>{{ form.street_number }}</td></tr>
+              <tr><th>*Colonia: </th><td>{{ form.suburb }}</td></tr>
+              <tr><th>*Código Postal: </th><td>{{ form.zip_code }}</td></tr>
+              <tr><th>*Ciudad: </th><td>{{ form.city }}</td></tr>
+              <tr><th>*Estado: </th><td>{{ form.state }}</td></tr>
+              <tr><th>*País: </th><td>{{ form.country }}</td></tr>
+
+              <tr><th colspan="2"><br></th></tr>
+              <tr><th colspan="2"><h3><strong>Datos curriculares</strong></h3></th></tr>
+              <tr><th>Escuela, Academia o Institución de Procedencia: </th><td>{{ form.academy }}</td></tr>
+              <tr><th>Ciudad y país de la Academia: </th><td>{{ form.academy_country }}</td></tr>
+
+              <tr><th colspan="2"><br></th></tr>
+              <tr><th colspan="2"><h3><strong>Contacto de emergencia</strong></h3></th></tr>
+              <tr><th>*Nombre completo: </th><td>{{ form.em_contact }}</td></tr>
+              <tr><th>*Parentesco: </th><td>{{ form.em_relationship }}</td></tr>
+              <tr><th>*Teléfono móvil: </th><td>{{ form.em_phone }}</td></tr>
+              <tr><th>Alergias o enfermedades: </th><td>{{ form.disease }}</td></tr>
+              <tr><th>*Tipo de sangre: </th><td>{{ form.blood_type }}</td></tr>
           </table>
+            <p>Todos los campos marcados con * son obligatorios</p>
           <input type="submit" value="Guardar"
           onclick="return confirm('¿Deseas confirmar tus datos? No podrás modificarlos una vez los guardes.')"/>
           <a href="{% url 'userprofile' %}">Regresar</a>

@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from schedule.models import Enrolled, ClassEnrolled, TallerGuitarra, Observador, Inter, Intensivo, Elemental,\
@@ -72,9 +73,13 @@ def profile(request):
             if form.is_valid():
                 obj = form.save(commit=False)
                 obj.user = request.user
+                if (obj.academy and not obj.academy_country) or (not obj.academy and obj.academy_country):
+                    error = "Por favor especifica todos los datos de la institución. Déjalos en blanco si no aplica"
+                    return render(request, 'schedule/enrolled_form.html', {'error': error, 'form': form})
                 obj.save()
                 return HttpResponseRedirect(reverse_lazy('userprofile'))
-            return render(request, 'schedule/enrolled_form.html', {'form': form})
+            error = "Por favor completa todos los campos obligatorios"
+            return render(request, 'schedule/enrolled_form.html', {'error': error, 'form': form})
 
         #Case logged user but enrolled form has not been completed
         form = CompleteProfile()

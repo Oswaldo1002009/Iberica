@@ -23,6 +23,27 @@
                 <th>Turno/Clases</th>
                 <th>Clases:Profesores</th>
                 <th>Fecha de inscripción</th>
+                <th>Usuario</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Calle y Número</th>
+                <th>Colonia</th>
+                <th>Código postal</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Academia</th>
+                <th>Ciudad y País Academia</th>
+                <th>Nombre del contacto de emergencia</th>
+                <th>Parentesco</th>
+                <th>Teléfono de Contacto</th>
+                <th>Enfermedades/Alergias</th>
+                <th>Tipo de sangre</th>
             </tr>
             {% for inde in independiente %}
             <tr>
@@ -43,6 +64,27 @@
                     </ul>
                 </td>
                 <td>{{ inde.created }}</td>
+                <td>{{ inde.who.user }}</td>
+                <td>{{ inde.who.name }}</td>
+                <td>{{ inde.who.lastname }}</td>
+                <td>{{ inde.who.lastname2 }}</td>
+                <td>{{ inde.who.birth_date | date }}</td>
+                <td>{{ inde.who.gender }}</td>
+                <td>{{ inde.email }}</td>
+                <td>{{ inde.who.phone }}</td>
+                <td>{{ inde.who.street_number }}</td>
+                <td>{{ inde.who.suburb }}</td>
+                <td>{{ inde.who.zip_code }}</td>
+                <td>{{ inde.who.city }}</td>
+                <td>{{ inde.who.state }}</td>
+                <td>{{ inde.who.country }}</td>
+                <td>{% if inde.who.academy %}{{ inde.who.academy }}{% else %}N/A{% endif %}</td>
+                <td>{% if inde.who.academy_country %}{{ inde.who.academy_country }}{% else %}N/A{% endif %}</td>
+                <td>{{ inde.who.em_contact }}</td>
+                <td>{{ inde.who.em_relationship }}</td>
+                <td>{{ inde.who.em_phone }}</td>
+                <td>{% if inde.who.disease %}{{ inde.who.disease }}{% else %}N/A{% endif %}</td>
+                <td>{{ inde.who.blood_type }}</td>
             </tr>
             {% endfor %}
     </table>
@@ -58,6 +100,27 @@
                 <th>Periodo</th>
                 <th>Clases:Profesores</th>
                 <th>Fecha de inscripción</th>
+                <th>Usuario</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Calle y Número</th>
+                <th>Colonia</th>
+                <th>Código postal</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Academia</th>
+                <th>Ciudad y País Academia</th>
+                <th>Nombre del contacto de emergencia</th>
+                <th>Parentesco</th>
+                <th>Teléfono de Contacto</th>
+                <th>Enfermedades/Alergias</th>
+                <th>Tipo de sangre</th>
             </tr>
             {% for ele in elemental %}
             <tr>
@@ -74,6 +137,27 @@
                     </ul>
                 </td>
                 <td>{{ ele.created }}</td>
+                <td>{{ ele.who.user }}</td>
+                <td>{{ ele.who.name }}</td>
+                <td>{{ ele.who.lastname }}</td>
+                <td>{{ ele.who.lastname2 }}</td>
+                <td>{{ ele.who.birth_date | date }}</td>
+                <td>{{ ele.who.gender }}</td>
+                <td>{{ ele.email }}</td>
+                <td>{{ ele.who.phone }}</td>
+                <td>{{ ele.who.street_number }}</td>
+                <td>{{ ele.who.suburb }}</td>
+                <td>{{ ele.who.zip_code }}</td>
+                <td>{{ ele.who.city }}</td>
+                <td>{{ ele.who.state }}</td>
+                <td>{{ ele.who.country }}</td>
+                <td>{% if ele.who.academy %}{{ ele.who.academy }}{% else %}N/A{% endif %}</td>
+                <td>{% if ele.who.academy_country %}{{ ele.who.academy_country }}{% else %}N/A{% endif %}</td>
+                <td>{{ ele.who.em_contact }}</td>
+                <td>{{ ele.who.em_relationship }}</td>
+                <td>{{ ele.who.em_phone }}</td>
+                <td>{% if ele.who.disease %}{{ ele.who.disease }}{% else %}N/A{% endif %}</td>
+                <td>{{ ele.who.blood_type }}</td>
             </tr>
             {% endfor %}
     </table>
@@ -90,6 +174,27 @@
                 <th>Turno/Clases</th>
                 <th>Clases:Profesores</th>
                 <th>Fecha de inscripción</th>
+                <th>Usuario</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Calle y Número</th>
+                <th>Colonia</th>
+                <th>Código postal</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Academia</th>
+                <th>Ciudad y País Academia</th>
+                <th>Nombre del contacto de emergencia</th>
+                <th>Parentesco</th>
+                <th>Teléfono de Contacto</th>
+                <th>Enfermedades/Alergias</th>
+                <th>Tipo de sangre</th>
             </tr>
             {% for inten in intensivo %}
             <tr>
@@ -130,6 +235,27 @@
                     </ul>
                 </td>
                 <td>{{ inten.created }}</td>
+                <td>{{ inten.who.user }}</td>
+                <td>{{ inten.who.name }}</td>
+                <td>{{ inten.who.lastname }}</td>
+                <td>{{ inten.who.lastname2 }}</td>
+                <td>{{ inten.who.birth_date | date }}</td>
+                <td>{{ inten.who.gender }}</td>
+                <td>{{ inten.email }}</td>
+                <td>{{ inten.who.phone }}</td>
+                <td>{{ inten.who.street_number }}</td>
+                <td>{{ inten.who.suburb }}</td>
+                <td>{{ inten.who.zip_code }}</td>
+                <td>{{ inten.who.city }}</td>
+                <td>{{ inten.who.state }}</td>
+                <td>{{ inten.who.country }}</td>
+                <td>{% if inten.who.academy %}{{ inten.who.academy }}{% else %}N/A{% endif %}</td>
+                <td>{% if inten.who.academy_country %}{{ inten.who.academy_country }}{% else %}N/A{% endif %}</td>
+                <td>{{ inten.who.em_contact }}</td>
+                <td>{{ inten.who.em_relationship }}</td>
+                <td>{{ inten.who.em_phone }}</td>
+                <td>{% if inten.who.disease %}{{ inten.who.disease }}{% else %}N/A{% endif %}</td>
+                <td>{{ inten.who.blood_type }}</td>
             </tr>
             {% endfor %}
     </table>
@@ -144,6 +270,27 @@
                 <th>Periodo</th>
                 <th>Clases:Profesores</th>
                 <th>Fecha de inscripción</th>
+                <th>Usuario</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Calle y Número</th>
+                <th>Colonia</th>
+                <th>Código postal</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Academia</th>
+                <th>Ciudad y País Academia</th>
+                <th>Nombre del contacto de emergencia</th>
+                <th>Parentesco</th>
+                <th>Teléfono de Contacto</th>
+                <th>Enfermedades/Alergias</th>
+                <th>Tipo de sangre</th>
             </tr>
             {% for inter in interdisciplinario %}
             <tr>
@@ -159,6 +306,27 @@
                     </ul>
                 </td>
                 <td>{{ inter.created }}</td>
+                <td>{{ inter.who.user }}</td>
+                <td>{{ inter.who.name }}</td>
+                <td>{{ inter.who.lastname }}</td>
+                <td>{{ inter.who.lastname2 }}</td>
+                <td>{{ inter.who.birth_date | date }}</td>
+                <td>{{ inter.who.gender }}</td>
+                <td>{{ inter.email }}</td>
+                <td>{{ inter.who.phone }}</td>
+                <td>{{ inter.who.street_number }}</td>
+                <td>{{ inter.who.suburb }}</td>
+                <td>{{ inter.who.zip_code }}</td>
+                <td>{{ inter.who.city }}</td>
+                <td>{{ inter.who.state }}</td>
+                <td>{{ inter.who.country }}</td>
+                <td>{% if inter.who.academy %}{{ inter.who.academy }}{% else %}N/A{% endif %}</td>
+                <td>{% if inter.who.academy_country %}{{ inter.who.academy_country }}{% else %}N/A{% endif %}</td>
+                <td>{{ inter.who.em_contact }}</td>
+                <td>{{ inter.who.em_relationship }}</td>
+                <td>{{ inter.who.em_phone }}</td>
+                <td>{% if inter.who.disease %}{{ inter.who.disease }}{% else %}N/A{% endif %}</td>
+                <td>{{ inter.who.blood_type }}</td>
             </tr>
             {% endfor %}
     </table>
@@ -172,6 +340,27 @@
                 <th>Programa</th>
                 <th>Clases:Profesores</th>
                 <th>Fecha de inscripción</th>
+                <th>Usuario</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Calle y Número</th>
+                <th>Colonia</th>
+                <th>Código postal</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Academia</th>
+                <th>Ciudad y País Academia</th>
+                <th>Nombre del contacto de emergencia</th>
+                <th>Parentesco</th>
+                <th>Teléfono de Contacto</th>
+                <th>Enfermedades/Alergias</th>
+                <th>Tipo de sangre</th>
             </tr>
             {% for obs in observadores %}
             <tr>
@@ -183,6 +372,27 @@
                     </ul>
                 </td>
                 <td>{{ obs.created }}</td>
+                <td>{{ obs.who.user }}</td>
+                <td>{{ obs.who.name }}</td>
+                <td>{{ obs.who.lastname }}</td>
+                <td>{{ obs.who.lastname2 }}</td>
+                <td>{{ obs.who.birth_date | date }}</td>
+                <td>{{ obs.who.gender }}</td>
+                <td>{{ obs.email }}</td>
+                <td>{{ obs.who.phone }}</td>
+                <td>{{ obs.who.street_number }}</td>
+                <td>{{ obs.who.suburb }}</td>
+                <td>{{ obs.who.zip_code }}</td>
+                <td>{{ obs.who.city }}</td>
+                <td>{{ obs.who.state }}</td>
+                <td>{{ obs.who.country }}</td>
+                <td>{% if obs.who.academy %}{{ obs.who.academy }}{% else %}N/A{% endif %}</td>
+                <td>{% if obs.who.academy_country %}{{ obs.who.academy_country }}{% else %}N/A{% endif %}</td>
+                <td>{{ obs.who.em_contact }}</td>
+                <td>{{ obs.who.em_relationship }}</td>
+                <td>{{ obs.who.em_phone }}</td>
+                <td>{% if obs.who.disease %}{{ obs.who.disease }}{% else %}N/A{% endif %}</td>
+                <td>{{ obs.who.blood_type }}</td>
             </tr>
             {% endfor %}
     </table>
@@ -197,6 +407,27 @@
                 <th>Turno/Clases</th>
                 <th>Clases:Profesores</th>
                 <th>Fecha de inscripción</th>
+                <th>Usuario</th>
+                <th>Nombre(s)</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>E-mail</th>
+                <th>Teléfono</th>
+                <th>Calle y Número</th>
+                <th>Colonia</th>
+                <th>Código postal</th>
+                <th>Ciudad</th>
+                <th>Estado</th>
+                <th>País</th>
+                <th>Academia</th>
+                <th>Ciudad y País Academia</th>
+                <th>Nombre del contacto de emergencia</th>
+                <th>Parentesco</th>
+                <th>Teléfono de Contacto</th>
+                <th>Enfermedades/Alergias</th>
+                <th>Tipo de sangre</th>
             </tr>
             {% for class in talleres_guitarra %}
             <tr>
@@ -211,6 +442,27 @@
                     </ul>
                 </td>
                 <td>{{ class.created }}</td>
+                <td>{{ class.who.user }}</td>
+                <td>{{ class.who.name }}</td>
+                <td>{{ class.who.lastname }}</td>
+                <td>{{ class.who.lastname2 }}</td>
+                <td>{{ class.who.birth_date | date }}</td>
+                <td>{{ class.who.gender }}</td>
+                <td>{{ class.email }}</td>
+                <td>{{ class.who.phone }}</td>
+                <td>{{ class.who.street_number }}</td>
+                <td>{{ class.who.suburb }}</td>
+                <td>{{ class.who.zip_code }}</td>
+                <td>{{ class.who.city }}</td>
+                <td>{{ class.who.state }}</td>
+                <td>{{ class.who.country }}</td>
+                <td>{% if class.who.academy %}{{ class.who.academy }}{% else %}N/A{% endif %}</td>
+                <td>{% if class.who.academy_country %}{{ class.who.academy_country }}{% else %}N/A{% endif %}</td>
+                <td>{{ class.who.em_contact }}</td>
+                <td>{{ class.who.em_relationship }}</td>
+                <td>{{ class.who.em_phone }}</td>
+                <td>{% if class.who.disease %}{{ class.who.disease }}{% else %}N/A{% endif %}</td>
+                <td>{{ class.who.blood_type }}</td>
             </tr>
             {% endfor %}
     </table>

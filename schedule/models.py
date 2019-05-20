@@ -106,18 +106,29 @@ class Enrolled(models.Model):
     user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE, db_index=True)
     name = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
+    lastname2 = models.CharField(max_length=200)
+    birth_date = models.DateTimeField()
     GENDER = (
         ('Masculino', 'Masculino'),
         ('Femenino', 'Femenino'),
     )
     gender = models.CharField(max_length=10, choices=GENDER)
-    birth_date = models.DateTimeField()
+
     phone = models.CharField(max_length=13)
-    address = models.CharField(max_length=200)
-    city = models.CharField(max_length=100)
-    country = models.CharField(max_length=50)
+
+    street_number = models.CharField(max_length=200)
+    suburb = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=5)
-    academy = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=50)
+
+    academy = models.CharField(max_length=100, blank=True)
+    academy_country = models.CharField(max_length=100, blank=True)
+
+    em_contact = models.CharField(max_length=100)
+    em_relationship = models.CharField(max_length=100)
+    em_phone = models.CharField(max_length=13)
     disease = models.TextField(blank=True)
     BLOOD_TYPES = (
         ('A+', 'A+'),
@@ -143,7 +154,7 @@ class Enrolled(models.Model):
         verbose_name_plural = 'Enrolled'
 
     def __str__(self):
-        return "%s: %s %s" % (self.user, self.name, self.lastname)
+        return "%s: %s %s %s" % (self.user, self.name, self.lastname, self.lastname2)
 
 
 class Em_contact(models.Model):
@@ -200,6 +211,12 @@ class TallerGuitarra(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.id_class, self.id_enrolled)
+
+    def who(self):
+        return Enrolled.objects.get(user=self.id_enrolled)
+
+    def email(self):
+        return User.objects.get(username=self.id_enrolled).email
     
 class Observador(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Observer_Enrolled', on_delete=models.CASCADE, db_index=True)
@@ -218,6 +235,12 @@ class Observador(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.id_class, self.id_enrolled)
+
+    def who(self):
+        return Enrolled.objects.get(user=self.id_enrolled)
+
+    def email(self):
+        return User.objects.get(username=self.id_enrolled).email
 
 class Inter(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Inter_Enrolled', on_delete=models.CASCADE, db_index=True)
@@ -303,6 +326,12 @@ class Inter(models.Model):
     def __str__(self):
         return "%s %s" % (self.weeks, self.id_enrolled)
 
+    def who(self):
+        return Enrolled.objects.get(user=self.id_enrolled)
+
+    def email(self):
+        return User.objects.get(username=self.id_enrolled).email
+
 
 class Intensivo(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Intensivo_Enrolled', on_delete=models.CASCADE, db_index=True)
@@ -387,6 +416,12 @@ class Intensivo(models.Model):
     def __str__(self):
         return "%s %s %s %s" % (self.level, self.weeks, self.turn, self.id_enrolled)
 
+    def who(self):
+        return Enrolled.objects.get(user=self.id_enrolled)
+
+    def email(self):
+        return User.objects.get(username=self.id_enrolled).email
+
 
 class Elemental(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Elemental_Enrolled', on_delete=models.CASCADE, db_index=True)
@@ -413,6 +448,12 @@ class Elemental(models.Model):
 
     def __str__(self):
         return "%s %s %s" % (self.level, self.weeks, self.id_enrolled)
+
+    def who(self):
+        return Enrolled.objects.get(user=self.id_enrolled)
+
+    def email(self):
+        return User.objects.get(username=self.id_enrolled).email
 
 class Independiente(models.Model):
     id_enrolled = models.ForeignKey(User, related_name='Independiente_Enrolled', on_delete=models.CASCADE, db_index=True)
@@ -498,3 +539,9 @@ class Independiente(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.weeks, self.id_enrolled)
+
+    def who(self):
+        return Enrolled.objects.get(user=self.id_enrolled)
+
+    def email(self):
+        return User.objects.get(username=self.id_enrolled).email
