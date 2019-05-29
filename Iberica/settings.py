@@ -16,7 +16,7 @@ SECRET_KEY = 'sul1hqqe(l+n!yatb$x$e)*j%8jgun3pb(k7&vj9(b#ez@r24a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['165.22.191.214']
 
 
 # Application definition
@@ -71,18 +71,18 @@ WSGI_APPLICATION = 'Iberica.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-    #'default': {
-     #   'ENGINE': 'django.db.backends.postgresql_psycopg2',
-      #  'NAME': 'p_prod',
-       # 'USER': 'p_admin',
-        #'PASSWORD': 'Iberica',
-        #'HOST': 'localhost',
-        #'PORT': '',
+   #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+     #   'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     #}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'registro_prod',
+        'USER': 'registro',
+        'PASSWORD': 'Iberica',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 
