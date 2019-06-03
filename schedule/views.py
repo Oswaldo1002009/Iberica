@@ -4,7 +4,8 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente, Inter, TallerGuitarra
+from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, \
+    Intensivo, Independiente, Inter, TallerGuitarra, Elemental
 from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm, \
     IndependienteForm
 
@@ -217,6 +218,31 @@ def ins_Observadores(request):
     return render(request, 'schedule/5-ObservadoresSemana.html', {'form': form})
 
 
+#Cupos programa Elemental
+def iElen1(c):
+    if 'Pablo Egea' in c and Elemental.objects.filter(n1=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso de Pablo Egea está lleno'
+    return False
+
+def iElen2(c):
+    if 'El Carpeta (Alegría)' in c and Elemental.objects.filter(n2=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso de El Carpeta (Alegría) está lleno'
+    return False
+
+def iElej1(c):
+    if '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)' in c and Elemental.objects.filter(j1=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso 9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos) está lleno'
+    if '10:35 am - 12:05 pm | Valeriano Paños (Farruca)' in c and Elemental.objects.filter(j1=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso 10:35 am - 12:05 pm | Valeriano Paños (Farruca) está lleno'
+    return False
+
+def iElej2(c):
+    if '9:00 am - 10:30 am | José Galán' in c and Elemental.objects.filter(j2=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso 9:00 am - 10:30 am | José Galán está lleno'
+    if '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)' in c and Elemental.objects.filter(j2=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso 10:35 am - 12:05 pm | Nazaret Reyes (Tangos) está lleno'
+    return False
+
 def ins_Elemental(request):
     if request.user.is_authenticated:
         user = request.user
@@ -233,8 +259,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen1(new_class.n1):
+                    error = iElen1(new_class.n1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Básico"
                 new_class.weeks = "Primera semana"
                 new_class.save()
@@ -249,8 +277,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen2(new_class.n2):
+                    error = iElen2(new_class.n2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Básico"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
@@ -265,8 +295,13 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n2 or not new_class.n1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen1(new_class.n1):
+                    error = iElen1(new_class.n1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen2(new_class.n2):
+                    error = iElen2(new_class.n2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Básico"
                 new_class.weeks = "Dos semanas"
                 new_class.save()
@@ -281,8 +316,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.j1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej1(new_class.j1):
+                    error = iElej1(new_class.j1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Jóvenes y Adultos"
                 new_class.weeks = "Primera semana"
                 new_class.save()
@@ -297,8 +334,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.j2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej2(new_class.j2):
+                    error = iElej2(new_class.j2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Jóvenes y Adultos"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
@@ -313,8 +352,13 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.j2 or not new_class.j1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej1(new_class.j1):
+                    error = iElej1(new_class.j1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej2(new_class.j2):
+                    error = iElej2(new_class.j2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Jóvenes y Adultos"
                 new_class.weeks = "Dos semanas"
                 new_class.save()

@@ -431,9 +431,10 @@ class Elemental(models.Model):
 
     NBWEEK1 = (('Pablo Egea', 'Pablo Egea'),)
     NBWEEK2 = (('El Carpeta (Alegría)', 'El Carpeta (Alegría)'),)
-    JABWEEK1 = (('9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)',
-                 '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)'),
-                ('10:35 am - 12:05 pm | Valeriano Paños (Farruca)', '10:35 am - 12:05 pm | Valeriano Paños (Farruca)'),)
+    JABWEEK1 = (
+        ('9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)', '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)'),
+        ('10:35 am - 12:05 pm | Valeriano Paños (Farruca)', '10:35 am - 12:05 pm | Valeriano Paños (Farruca)'),
+    )
     JABWEEK2 = (('9:00 am - 10:30 am | José Galán', '9:00 am - 10:30 am | José Galán'),
                 ('10:35 am - 12:05 pm | Nazaret Reyes (Tangos)', '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)'),)
 
