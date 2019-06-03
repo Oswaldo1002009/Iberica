@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente, Inter
+from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente, Inter, TallerGuitarra
 from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm, \
     IndependienteForm
 
@@ -168,11 +168,21 @@ def ins_TallerGuitarra(request):
                 new_class = form.save(commit=False)
                 new_class.id_enrolled = request.user
                 i = 0
+                #Cupos programa Taller de Guitarra
                 if new_class.s1:
+                    if TallerGuitarra.objects.filter(s1='8-12 julio, 9:00 am - 12:00 pm: Román Vicenti').count() >= 10:
+                        error = 'Lo sentimos, el cupo del primer taller está lleno'
+                        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form, 'error': error})
                     i = i + 1
                 if new_class.s2:
+                    if TallerGuitarra.objects.filter(s2='15-17 julio, 9:00 am - 12:00 pm: Oscar Lagos').count() >= 10:
+                        error = 'Lo sentimos, el cupo del segundo taller está lleno'
+                        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form, 'error': error})
                     i = i + 1
                 if new_class.s3:
+                    if TallerGuitarra.objects.filter(s3='18-20 julio, 9:00 am - 12:00 pm: Antonio Campos y Jose Luis Medina').count() >= 10:
+                        error = 'Lo sentimos, el cupo del tercer taller está lleno'
+                        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form, 'error': error})
                     i = i + 1
                 if i == 0:
                     error = "Necesitas inscribir al menos una clase"
