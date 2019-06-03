@@ -77,7 +77,7 @@ DATABASES = {
     #}
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgresql',
+        'NAME': 'elephantsql',
         'USER': 'jxhqhzbg',
         'PASSWORD': '8iLdMOgz_xcBr5_FI6pE4-28MxnRxpna',
         'HOST': 'raja.db.elephantsql.com',
