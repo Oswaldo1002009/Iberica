@@ -4,10 +4,82 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente
+from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente, Inter
 from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm, \
     IndependienteForm
 
+#Cupos programa Interdisciplinario
+def eInter1_12(c):
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 1 a las 12 está lleno'
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio semana 1 a las 12 está lleno'
+    if 'Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado' in c and Inter.objects.filter(week1_12=c).count() >= 1:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado semana 1 a las 12 está lleno'
+    if 'La Truco "Certificaciones de la EFA para Nivel Básico" Solo Avanzados (NUEVO)' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso La Truco "Certificaciones de la EFA para Nivel Básico" Solo Avanzados (NUEVO) semana 1 a las 12 está lleno'
+    if 'Juan Paredes "Siente el Flamenco"' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Juan Paredes "Siente el Flamenco" semana 1 a las 12 está lleno'
+    if 'Carlos López Aragón "Danza Flamenca Urbana"' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Carlos López Aragón "Danza Flamenca Urbana" semana 1 a las 12 está lleno'
+    if 'Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos semana 1 a las 12 está lleno'
+    if 'José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO)' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO) semana 1 a las 12 está lleno'
+    return False
+
+def eInter1_13(c):
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 1 a las 13:35 está lleno'
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Básico' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Básico, semana 1 a las 13:35 está lleno'
+    if 'Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado, semana 1 a las 13:35 está lleno'
+    if 'Ana López "Estilización y Escuela Bolera"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Ana López "Estilización y Escuela Bolera", semana 1 a las 13:35 está lleno'
+    if 'María Juncal "Técnica de Brazos y Cuerpo"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso María Juncal "Técnica de Brazos y Cuerpo", semana 1 a las 13:35 está lleno'
+    if 'Carlos López Aragón "Acrodanza"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Carlos López Aragón "Acrodanza", semana 1 a las 13:35 está lleno'
+    if 'Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas)' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas), semana 1 a las 13:35 está lleno'
+    return False
+
+def eInter2_12(c):
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio, semana 2 a las 12 está lleno'
+    if 'Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado, semana 2 a las 12 está lleno'
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 2 a las 12 está lleno'
+    if 'María Juncal "Técnica de Pies"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso María Juncal "Técnica de Pies", semana 2 a las 12 está lleno'
+    if 'José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO)' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO), semana 2 a las 12 está lleno'
+    if 'Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos, semana 2 a las 12 está lleno'
+    if 'Raquel Ruiz "Neo Folk"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Raquel Ruiz "Neo Folk", semana 2 a las 12 está lleno'
+    if 'Ana López "Estilización y Escuela Bolera"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Ana López "Estilización y Escuela Bolera", semana 2 a las 12 está lleno'
+    return False
+
+def eInter2_13(c):
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 2 a las 13:35 está lleno'
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Básico' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Básico, semana 2 a las 13:35 está lleno'
+    if 'Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado, semana 2 a las 13:35 está lleno'
+    if 'Juan Paredes "Siente el Flamenco"' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Juan Paredes "Siente el Flamenco", semana 2 a las 13:35 está lleno'
+    if 'La Truco "Certificaciones de la EFA para Nivel Intermedio" Solo Avanzados (NUEVO)' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso La Truco "Certificaciones de la EFA para Nivel Intermedio" Solo Avanzados (NUEVO), semana 2 a las 13:35 está lleno'
+    if 'Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas)' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas), semana 2 a las 13:35 está lleno'
+    if 'Raquel Ruiz "Neo Folk"' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Raquel Ruiz "Neo Folk", semana 2 a las 13:35 está lleno'
+    return False
 
 def ins_Inter(request):
     if request.user.is_authenticated:
@@ -34,15 +106,47 @@ def ins_Inter(request):
                                                                                   'error': error})
                 # Week 1 completed
                 if inter.week1_12 and inter.week1_13 and not inter.week2_12:
+                    if eInter1_12(inter.week1_12):
+                        error = eInter1_12(inter.week1_12)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
+                    if eInter1_13(inter.week1_13):
+                        error = eInter1_13(inter.week1_13)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
                     inter.weeks = "Primera semana"
                     inter.save()
                     return redirect(reverse('userprofile'))
                 # Week 2 completed
                 if inter.week2_12 and inter.week2_13 and not inter.week1_12:
+                    if eInter2_12(inter.week2_12):
+                        error = eInter2_12(inter.week2_12)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
+                    if eInter2_13(inter.week2_13):
+                        error = eInter2_13(inter.week2_13)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
                     inter.weeks = "Segunda semana"
                     inter.save()
                     return redirect(reverse('userprofile'))
                 # Both weeks completed
+                if eInter1_12(inter.week1_12):
+                    error = eInter1_12(inter.week1_12)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
+                if eInter1_13(inter.week1_13):
+                    error = eInter1_13(inter.week1_13)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
+                if eInter2_12(inter.week2_12):
+                    error = eInter2_12(inter.week2_12)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
+                if eInter2_13(inter.week2_13):
+                    error = eInter2_13(inter.week2_13)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
                 inter.weeks = "Dos semanas"
                 inter.save()
                 return redirect(reverse('userprofile'))
@@ -50,7 +154,6 @@ def ins_Inter(request):
         form = InterForm()
         return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form})
     return render(request, 'schedule/4-Interdisciplinario.html', {'form': form})
-
 
 def ins_TallerGuitarra(request):
     if request.user.is_authenticated:
