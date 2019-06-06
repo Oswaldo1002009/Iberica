@@ -4,10 +4,83 @@ from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, Intensivo, Independiente
+from .models import ClassEnrolled, Program, Level, Classes, Groups, Enrolled, \
+    Intensivo, Independiente, Inter, TallerGuitarra, Elemental
 from .forms import ClassEnrolledForm, TallerGuitarraForm, ObservadoresForm, InterForm, IntensivoForm, ElementalForm, \
     IndependienteForm
 
+#Cupos programa Interdisciplinario
+def eInter1_12(c):
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 1 a las 12 está lleno'
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio semana 1 a las 12 está lleno'
+    if 'Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado' in c and Inter.objects.filter(week1_12=c).count() >= 1:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado semana 1 a las 12 está lleno'
+    if 'La Truco "Certificaciones de la EFA para Nivel Básico" Solo Avanzados (NUEVO)' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso La Truco "Certificaciones de la EFA para Nivel Básico" Solo Avanzados (NUEVO) semana 1 a las 12 está lleno'
+    if 'Juan Paredes "Siente el Flamenco"' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Juan Paredes "Siente el Flamenco" semana 1 a las 12 está lleno'
+    if 'Carlos López Aragón "Danza Flamenca Urbana"' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Carlos López Aragón "Danza Flamenca Urbana" semana 1 a las 12 está lleno'
+    if 'Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos semana 1 a las 12 está lleno'
+    if 'José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO)' in c and Inter.objects.filter(week1_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO) semana 1 a las 12 está lleno'
+    return False
+
+def eInter1_13(c):
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 1 a las 13:35 está lleno'
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Básico' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Básico, semana 1 a las 13:35 está lleno'
+    if 'Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado, semana 1 a las 13:35 está lleno'
+    if 'Ana López "Estilización y Escuela Bolera"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Ana López "Estilización y Escuela Bolera", semana 1 a las 13:35 está lleno'
+    if 'María Juncal "Técnica de Brazos y Cuerpo"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso María Juncal "Técnica de Brazos y Cuerpo", semana 1 a las 13:35 está lleno'
+    if 'Carlos López Aragón "Acrodanza"' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Carlos López Aragón "Acrodanza", semana 1 a las 13:35 está lleno'
+    if 'Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas)' in c and Inter.objects.filter(week1_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas), semana 1 a las 13:35 está lleno'
+    return False
+
+def eInter2_12(c):
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Intermedio, semana 2 a las 12 está lleno'
+    if 'Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Técnica de Danza Clásica" Nivel Avanzado, semana 2 a las 12 está lleno'
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 2 a las 12 está lleno'
+    if 'María Juncal "Técnica de Pies"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso María Juncal "Técnica de Pies", semana 2 a las 12 está lleno'
+    if 'José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO)' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso José Galán "Flamenco Inclusivo" Dirigido a Niveles Intermedio y Avanzado (NUEVO), semana 2 a las 12 está lleno'
+    if 'Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Técnica de Danza Española" Castañuelas, Vueltas y Braceos, semana 2 a las 12 está lleno'
+    if 'Raquel Ruiz "Neo Folk"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Raquel Ruiz "Neo Folk", semana 2 a las 12 está lleno'
+    if 'Ana López "Estilización y Escuela Bolera"' in c and Inter.objects.filter(week2_12=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Ana López "Estilización y Escuela Bolera", semana 2 a las 12 está lleno'
+    return False
+
+def eInter2_13(c):
+    if 'Cristóbal Reyes "Valoración del Flamenco"' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Cristóbal Reyes "Valoración del Flamenco", semana 2 a las 13:35 está lleno'
+    if 'Eduardo Alves "Técnica de Danza Clásica" Nivel Básico' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Eduardo Alves "Técnica de Danza Clásica" Nivel Básico, semana 2 a las 13:35 está lleno'
+    if 'Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nuria Balbaneda "Coreografía de Danza Clásica" Nivel Intermedio y Avanzado, semana 2 a las 13:35 está lleno'
+    if 'Juan Paredes "Siente el Flamenco"' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Juan Paredes "Siente el Flamenco", semana 2 a las 13:35 está lleno'
+    if 'La Truco "Certificaciones de la EFA para Nivel Intermedio" Solo Avanzados (NUEVO)' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso La Truco "Certificaciones de la EFA para Nivel Intermedio" Solo Avanzados (NUEVO), semana 2 a las 13:35 está lleno'
+    if 'Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas)' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Maribel Gallardo "Repertorio de la Danza Española" Goyescas (Abanico) y La Vida Breve (Castañuelas), semana 2 a las 13:35 está lleno'
+    if 'Raquel Ruiz "Neo Folk"' in c and Inter.objects.filter(week2_13=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso Raquel Ruiz "Neo Folk", semana 2 a las 13:35 está lleno'
+    return False
 
 def ins_Inter(request):
     if request.user.is_authenticated:
@@ -34,15 +107,47 @@ def ins_Inter(request):
                                                                                   'error': error})
                 # Week 1 completed
                 if inter.week1_12 and inter.week1_13 and not inter.week2_12:
+                    if eInter1_12(inter.week1_12):
+                        error = eInter1_12(inter.week1_12)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
+                    if eInter1_13(inter.week1_13):
+                        error = eInter1_13(inter.week1_13)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
                     inter.weeks = "Primera semana"
                     inter.save()
                     return redirect(reverse('userprofile'))
                 # Week 2 completed
                 if inter.week2_12 and inter.week2_13 and not inter.week1_12:
+                    if eInter2_12(inter.week2_12):
+                        error = eInter2_12(inter.week2_12)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
+                    if eInter2_13(inter.week2_13):
+                        error = eInter2_13(inter.week2_13)
+                        return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                      'error': error})
                     inter.weeks = "Segunda semana"
                     inter.save()
                     return redirect(reverse('userprofile'))
                 # Both weeks completed
+                if eInter1_12(inter.week1_12):
+                    error = eInter1_12(inter.week1_12)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
+                if eInter1_13(inter.week1_13):
+                    error = eInter1_13(inter.week1_13)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
+                if eInter2_12(inter.week2_12):
+                    error = eInter2_12(inter.week2_12)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
+                if eInter2_13(inter.week2_13):
+                    error = eInter2_13(inter.week2_13)
+                    return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form,
+                                                                                  'error': error})
                 inter.weeks = "Dos semanas"
                 inter.save()
                 return redirect(reverse('userprofile'))
@@ -50,7 +155,6 @@ def ins_Inter(request):
         form = InterForm()
         return render(request, 'schedule/4-Interdisciplinario.html', {'enrolled': enrolled, 'form': form})
     return render(request, 'schedule/4-Interdisciplinario.html', {'form': form})
-
 
 def ins_TallerGuitarra(request):
     if request.user.is_authenticated:
@@ -65,11 +169,21 @@ def ins_TallerGuitarra(request):
                 new_class = form.save(commit=False)
                 new_class.id_enrolled = request.user
                 i = 0
+                #Cupos programa Taller de Guitarra
                 if new_class.s1:
+                    if TallerGuitarra.objects.filter(s1='8-12 julio, 9:00 am - 12:00 pm: Román Vicenti').count() >= 10:
+                        error = 'Lo sentimos, el cupo del primer taller está lleno'
+                        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form, 'error': error})
                     i = i + 1
                 if new_class.s2:
+                    if TallerGuitarra.objects.filter(s2='15-17 julio, 9:00 am - 12:00 pm: Oscar Lagos').count() >= 10:
+                        error = 'Lo sentimos, el cupo del segundo taller está lleno'
+                        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form, 'error': error})
                     i = i + 1
                 if new_class.s3:
+                    if TallerGuitarra.objects.filter(s3='18-20 julio, 9:00 am - 12:00 pm: Antonio Campos y Jose Luis Medina').count() >= 10:
+                        error = 'Lo sentimos, el cupo del tercer taller está lleno'
+                        return render(request, 'schedule/6-TalleresDeGuitarra.html', {'enrolled': enrolled, 'form': form, 'error': error})
                     i = i + 1
                 if i == 0:
                     error = "Necesitas inscribir al menos una clase"
@@ -104,6 +218,40 @@ def ins_Observadores(request):
     return render(request, 'schedule/5-ObservadoresSemana.html', {'form': form})
 
 
+#Cupos programa Elemental
+def iElen1(c):
+    if 'Pablo Egea' in c and Elemental.objects.filter(n1=c).count() + \
+            Independiente.objects.filter(p10='NIÑOS BÁSICO - Pablo Egea').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS BÁSICO - Pablo Egea está lleno'
+    return False
+
+def iElen2(c):
+    if 'El Carpeta (Alegría)' in c and Elemental.objects.filter(n2=c).count() + \
+            Independiente.objects.filter(s10='NIÑOS BÁSICO - El Carpeta (Alegría)').count() >= 1:
+        return 'Lo sentimos, el cupo del curso de NIÑOS BÁSICO - El Carpeta (Alegría) está lleno'
+    return False
+
+def iElej1(c):
+    if '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)' in c and Elemental.objects.filter(j1=c).count() + \
+            Independiente.objects.filter(p9='NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)').count() >= 1:
+        return 'Lo sentimos, el cupo del curso 9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos) está lleno'
+    if '10:35 am - 12:05 pm | Valeriano Paños (Farruca)' in c and Elemental.objects.filter(j1=c).count() + \
+            Independiente.objects.filter(p10='NIVEL BÁSICO - Valeriano Paños (Farruca)').count() >= 1:
+        return 'Lo sentimos, el cupo del curso 10:35 am - 12:05 pm | Valeriano Paños (Farruca) está lleno'
+    return False
+
+def iElej2(c):
+    if '9:00 am 10:30 am | Pablo Egea' in c and Elemental.objects.filter(j2=c).count() + \
+            Independiente.objects.filter(s9='NIVEL BÁSICO - Pablo Egea').count() >= 1:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Pablo Egea está lleno'
+    if '9:00 am - 10:30 am | José Galán' in c and Elemental.objects.filter(j2=c).count() + \
+            Independiente.objects.filter(s9='NIVEL BÁSICO - José Galán').count() >= 1:
+        return 'Lo sentimos, el cupo del curso 9:00 am - 10:30 am | José Galán está lleno'
+    if '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)' in c and Elemental.objects.filter(j2=c).count() + \
+            Independiente.objects.filter(s10='NIVEL BÁSICO - Nazaret Reyes (Tangos)').count() >= 1:
+        return 'Lo sentimos, el cupo del curso 10:35 am - 12:05 pm | Nazaret Reyes (Tangos) está lleno'
+    return False
+
 def ins_Elemental(request):
     if request.user.is_authenticated:
         user = request.user
@@ -120,8 +268,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen1(new_class.n1):
+                    error = iElen1(new_class.n1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Básico"
                 new_class.weeks = "Primera semana"
                 new_class.save()
@@ -136,8 +286,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen2(new_class.n2):
+                    error = iElen2(new_class.n2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Básico"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
@@ -152,8 +304,13 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n2 or not new_class.n1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen1(new_class.n1):
+                    error = iElen1(new_class.n1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElen2(new_class.n2):
+                    error = iElen2(new_class.n2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Básico"
                 new_class.weeks = "Dos semanas"
                 new_class.save()
@@ -168,8 +325,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.j1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej1(new_class.j1):
+                    error = iElej1(new_class.j1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Jóvenes y Adultos"
                 new_class.weeks = "Primera semana"
                 new_class.save()
@@ -184,8 +343,10 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.j2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej2(new_class.j2):
+                    error = iElej2(new_class.j2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Jóvenes y Adultos"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
@@ -200,8 +361,13 @@ def ins_Elemental(request):
                 new_class.id_enrolled = request.user
                 if not new_class.j2 or not new_class.j1:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej1(new_class.j1):
+                    error = iElej1(new_class.j1)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iElej2(new_class.j2):
+                    error = iElej2(new_class.j2)
+                    return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Jóvenes y Adultos"
                 new_class.weeks = "Dos semanas"
                 new_class.save()
@@ -212,6 +378,168 @@ def ins_Elemental(request):
         return render(request, 'schedule/2-Elemental.html', {'enrolled': enrolled, 'form': form})
     return render(request, 'schedule/2-Elemental.html', {'form': form})
 
+#Cupos programa Intensivo
+def iIn_n1m1(c):
+    if 'José Galán' in c and Intensivo.objects.filter(n1m1=c).count() + \
+            Independiente.objects.filter(p9='NIÑOS INTERMEDIO - José Galán').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - José Galán está lleno'
+    return False
+
+def iIn_n1m2(c):
+    if 'Manuel Fernández "El carpeta" (Seguiriyas)' in c and Intensivo.objects.filter(n1m2=c).count() + \
+            Independiente.objects.filter(p10='NIÑOS INTERMEDIO - El Carpeta (Seguiriyas)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - El Carpeta (Seguiriyas) está lleno'
+    return False
+
+def iIn_n2m1(c):
+    if 'Nazaret Reyes (Alegrías)' in c and Intensivo.objects.filter(n2m1=c).count() + \
+            Independiente.objects.filter(s9='NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías) está lleno'
+    return False
+
+def iIn_n2m2(c):
+    if 'María Juncal (Tientos)' in c and Intensivo.objects.filter(n2m2=c).count() + \
+            Independiente.objects.filter(s10='NIÑOS INTERMEDIO - María Juncal (Tientos)').count() >= 1:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - María Juncal (Tientos) está lleno'
+    return False
+
+def iIn_b1m1(c):
+    if 'Juan Paredes (Bailes festeros por tangos)' in c and Intensivo.objects.filter(b1m1=c).count() + \
+            Independiente.objects.filter(p9='NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos) está lleno'
+    return False
+
+def iIn_b1m2(c):
+    if 'Valeriano Paños (Farruca)' in c and Intensivo.objects.filter(b1m2=c).count() + \
+            Independiente.objects.filter(p10='NIVEL BÁSICO - Valeriano Paños (Farruca))').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Valeriano Paños (Farruca) está lleno'
+    return False
+
+def iIn_b2m1(c):
+    if 'Pablo Egea' in c and Intensivo.objects.filter(b2m1=c).count() + \
+            Independiente.objects.filter(s9='NIVEL BÁSICO - Pablo Egea').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Pablo Egea está lleno'
+    return False
+
+def iIn_b2m2(c):
+    if 'Nazaret Reyes (Tangos)' in c and Intensivo.objects.filter(b2m2=c).count() + \
+            Independiente.objects.filter(s10='NIVEL BÁSICO - Nazaret Reyes (Tangos)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso Nazaret Reyes (Tangos) está lleno'
+    return False
+
+def iIn_i1m1(c):
+    if 'El Carpeta (Bulerías)' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9='NIVEL INTERMEDIO - El Carpeta (Bulerías)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - El Carpeta (Bulerías) está lleno'
+    if 'Nazaret Reyes (Alegrías)' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9='NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Nazaret Reyes (Alegrías) está lleno'
+    if 'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano) está lleno'
+    if 'NIVEL AVANZADO - Valeriano Paños (Martinete)' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Valeriano Paños (Martinete) está lleno'
+    if 'NIVEL PROFESIONAL - Javier LaTorre' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL PROFESIONAL - Javier LaTorre está lleno'
+    return False
+
+def iIn_i1m2(c):
+    if 'Rafael Estévez (Tangos)' in c and Intensivo.objects.filter(i1m2=c).count() + \
+            Independiente.objects.filter(p10='NIVEL INTERMEDIO - Rafael Estévez (Tangos)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Rafael Estévez (Tangos) está lleno'
+    if 'Nazaret Reyes (Caña)' in c and Intensivo.objects.filter(i1m2=c).count() + \
+            Independiente.objects.filter(p10='NIVEL INTERMEDIO - Nazaret Reyes (Caña)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Nazaret Reyes (Caña) está lleno'
+    if 'NIVEL AVANZADO - La Truco (Soleá)' in c and Intensivo.objects.filter(i1m2=c).count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - La Truco (Soleá) está lleno'
+    if 'NIVEL AVANZADO - Javier LaTorre (Taranto)' in c and Intensivo.objects.filter(i1m2=c).count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Javier LaTorre (Taranto) está lleno'
+    return False
+
+def iIn_i1v1(c):
+    if 'María Juncal (Fandangos)' in c and Intensivo.objects.filter(i1v1=c).count() + \
+            Independiente.objects.filter(p3='NIVEL INTERMEDIO - María Juncal (Fandangos)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - María Juncal (Fandangos) está lleno'
+    if 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)' in c and Intensivo.objects.filter(i1v1=c).count() + \
+            Independiente.objects.filter(p3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería) está lleno'
+    if 'NIVEL AVANZADO - Ana Morales (Soleá)' in c and Intensivo.objects.filter(i1v1=c).count() + \
+            Independiente.objects.filter(p3=v).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Ana Morales (Soleá) está lleno'
+    return False
+
+def iIn_i1v2(c):
+    if 'María Juncal (Fandangos)' in c and Intensivo.objects.filter(i1v2=c).count() + \
+            Independiente.objects.filter(p5='NIVEL INTERMEDIO - Ana Morales (Alegrías de Córdoba)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Ana Morales (Alegrías de Córdoba) está lleno'
+    if 'NIVEL AVANZADO - María Juncal (Guajira)' in c and Intensivo.objects.filter(i1v2=c).count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - María Juncal (Guajira) está lleno'
+    if 'NIVEL AVANZADO - Pedro Córdoba (Martinete)' in c and Intensivo.objects.filter(i1v2=c).count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Pedro Córdoba (Martinete) está lleno'
+    return False
+
+def iIn_i2m1(c):
+    if 'Eduardo Guerrero (Bulerías)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9='NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías) está lleno'
+    if 'El Carpeta (Seguiriyas)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9='NIVEL INTERMEDIO - El Carpeta (Seguiriyas)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - El Carpeta (Seguiriyas) está lleno'
+    if 'NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías) está lleno'
+    if 'NIVEL AVANZADO - Ana Morales (Seguiriya)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Ana Morales (Seguiriya) está lleno'
+    if 'NIVEL PROFESIONAL - Pedro Córdoba' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL PROFESIONAL - Pedro Córdoba está lleno'
+    return False
+
+def iIn_i2m2(c):
+    if 'María Moreno (Romance)' in c and Intensivo.objects.filter(i2m2=c).count() + \
+            Independiente.objects.filter(s10='NIVEL INTERMEDIO - María Moreno (Romance)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - María Moreno (Romance) está lleno'
+    if 'Ana Morales (Guajira)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s10='NIVEL INTERMEDIO - Ana Morales (Guajira)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Ana Morales (Guajira) está lleno'
+    if 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)' in c and Intensivo.objects.filter(i2m2=c).count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería) está lleno'
+    if 'NIVEL AVANZADO - Eduardo Guerrero (Fandango)' in c and Intensivo.objects.filter(i2m2=c).count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Eduardo Guerrero (Fandango) está lleno'
+    return False
+
+def iIn_i2v1(c):
+    if 'Karen Lugo (Bambera)' in c and Intensivo.objects.filter(i2v1=c).count() + \
+            Independiente.objects.filter(s3='NIVEL INTERMEDIO - Karen Lugo (Bambera)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Karen Lugo (Bambera) está lleno'
+    if 'NIVEL AVANZADO - La Truco (Seguiriya)' in c and Intensivo.objects.filter(i2v1=c).count() + \
+            Independiente.objects.filter(s3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - La Truco (Seguiriya) está lleno'
+    if 'NIVEL AVANZADO - Javier LaTorre (Alegrías)' in c and Intensivo.objects.filter(i2v1=c).count() + \
+            Independiente.objects.filter(s3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Javier LaTorre (Alegrías) está lleno'
+    return False
+
+def iIn_i2v2(c):
+    if 'Juan Paredes (Bailes festeros por bulerías)' in c and Intensivo.objects.filter(i2v2=c).count() + \
+            Independiente.objects.filter(s5='NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías)').count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías) está lleno'
+    if 'NIVEL AVANZADO - Javier LaTorre (Farruca)' in c and Intensivo.objects.filter(i2v2=c).count() + \
+            Independiente.objects.filter(s5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Javier LaTorre (Farruca) está lleno'
+    if 'NIVEL AVANZADO - Karen Lugo (Martinete)' in c and Intensivo.objects.filter(i2v2=c).count() + \
+            Independiente.objects.filter(s5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Karen Lugo (Martinete) está lleno'
+    return False
 
 def ins_Intensivo(request):
     if request.user.is_authenticated:
@@ -229,8 +557,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n1m1 or not new_class.n1m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n1m1(new_class.n1m1):
+                    error = iIn_n1m1(new_class.n1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n1m2(new_class.n1m2):
+                    error = iIn_n1m2(new_class.n1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Intermedio"
                 new_class.weeks = "Primera semana"
                 new_class.save()
@@ -245,8 +578,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n2m1 or not new_class.n2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n2m1(new_class.n2m1):
+                    error = iIn_n2m1(new_class.n2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n2m2(new_class.n2m2):
+                    error = iIn_n2m2(new_class.n2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Intermedio"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
@@ -261,8 +599,19 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.n1m1 or not new_class.n1m2 and not new_class.n2m1 or not new_class.n2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n1m1(new_class.n1m1):
+                    error = iIn_n1m1(new_class.n1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n1m2(new_class.n1m2):
+                    error = iIn_n1m2(new_class.n1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n2m1(new_class.n2m1):
+                    error = iIn_n2m1(new_class.n2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_n2m2(new_class.n2m2):
+                    error = iIn_n2m2(new_class.n2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Niños Intermedio"
                 new_class.weeks = "Dos semanas"
                 new_class.save()
@@ -277,8 +626,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.b1m1 or not new_class.b1m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b1m1(new_class.b1m1):
+                    error = iIn_b1m1(new_class.b1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b1m2(new_class.b1m2):
+                    error = iIn_b1m2(new_class.b1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Básico"
                 new_class.weeks = "Primera semana"
                 new_class.save()
@@ -293,8 +647,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.b2m1 or not new_class.b2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b2m1(new_class.b2m1):
+                    error = iIn_b2m1(new_class.b2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b2m2(new_class.b2m2):
+                    error = iIn_b2m2(new_class.b2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Básico"
                 new_class.weeks = "Segunda semana"
                 new_class.save()
@@ -309,8 +668,19 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.b1m1 or not new_class.b1m2 and not new_class.b2m1 or not new_class.b2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b1m1(new_class.b1m1):
+                    error = iIn_b1m1(new_class.b1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b1m2(new_class.b1m2):
+                    error = iIn_b1m2(new_class.b1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b2m1(new_class.b2m1):
+                    error = iIn_b2m1(new_class.b2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_b2m2(new_class.b2m2):
+                    error = iIn_b2m2(new_class.b2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Básico"
                 new_class.weeks = "Dos semanas"
                 new_class.save()
@@ -325,8 +695,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i1m1 or not new_class.i1m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1m1(new_class.i1m1):
+                    error = iIn_i1m1(new_class.i1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1m2(new_class.i1m2):
+                    error = iIn_i1m2(new_class.i1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Primera semana"
                 new_class.turn = "Matutino"
@@ -342,8 +717,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i1v1 or not new_class.i1v2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1v1(new_class.i1v1):
+                    error = iIn_i1v1(new_class.i1v1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1v2(new_class.i1v2):
+                    error = iIn_i1v2(new_class.i1v2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Primera semana"
                 new_class.turn = "Vespertino"
@@ -359,8 +739,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i2m1 or not new_class.i2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2m1(new_class.i2m1):
+                    error = iIn_i2m1(new_class.i2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2m2(new_class.i2m2):
+                    error = iIn_i2m2(new_class.i2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Segunda semana"
                 new_class.turn = "Matutino"
@@ -376,8 +761,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i2v1 or not new_class.i2v2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2v1(new_class.i2v1):
+                    error = iIn_i2v1(new_class.i2v1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2v2(new_class.i2v2):
+                    error = iIn_i2v2(new_class.i2v2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Segunda semana"
                 new_class.turn = "Vespertino"
@@ -393,8 +783,19 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i1m1 or not new_class.i1m2 or not new_class.i2m1 or not new_class.i2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1m1(new_class.i1m1):
+                    error = iIn_i1m1(new_class.i1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1m2(new_class.i1m2):
+                    error = iIn_i1m2(new_class.i1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2m1(new_class.i2m1):
+                    error = iIn_i2m1(new_class.i2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2m2(new_class.i2m2):
+                    error = iIn_i2m2(new_class.i2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Dos semanas"
                 new_class.turn = "Matutino y matutino"
@@ -410,8 +811,19 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i1m1 or not new_class.i1m2 or not new_class.i2v1 or not new_class.i2v2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1m1(new_class.i1m1):
+                    error = iIn_i1m1(new_class.i1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1m2(new_class.i1m2):
+                    error = iIn_i1m2(new_class.i1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2v1(new_class.i2v1):
+                    error = iIn_i2v1(new_class.i2v1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2v2(new_class.i2v2):
+                    error = iIn_i2v2(new_class.i2v2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Dos semanas"
                 new_class.turn = "Matutino y vespertino"
@@ -427,8 +839,19 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i1v1 or not new_class.i1v2 or not new_class.i2m1 or not new_class.i2m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1v1(new_class.i1v1):
+                    error = iIn_i1v1(new_class.i1v1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1v2(new_class.i1v2):
+                    error = iIn_i1v2(new_class.i1v2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2m1(new_class.i2m1):
+                    error = iIn_i2m1(new_class.i2m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2m2(new_class.i2m2):
+                    error = iIn_i2m2(new_class.i2m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Dos semanas"
                 new_class.turn = "Vespertino y matutino"
@@ -444,8 +867,19 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.i1v1 or not new_class.i1v2 or not new_class.i2v1 or not new_class.i2v2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1v1(new_class.i1v1):
+                    error = iIn_i1v1(new_class.i1v1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i1v2(new_class.i1v2):
+                    error = iIn_i1v2(new_class.i1v2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2v1(new_class.i2v1):
+                    error = iIn_i2v1(new_class.i2v1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_i2v2(new_class.i2v2):
+                    error = iIn_i2v2(new_class.i2v2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Intermedio"
                 new_class.weeks = "Dos semanas"
                 new_class.turn = "Vespertino y vespertino"
@@ -461,8 +895,13 @@ def ins_Intensivo(request):
                 new_class.id_enrolled = request.user
                 if not new_class.a1m1 or not new_class.a1m2:
                     error = "Necesitas llenar todo el formulario"
-                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_a1m1(new_class.a1m1):
+                    error = iIn_a1m1(new_class.a1m1)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
+                if iIn_a1m2(new_class.a1m2):
+                    error = iIn_a1m2(new_class.a1m2)
+                    return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.level = "Avanzado"
                 new_class.weeks = "Primera semana"
                 new_class.turn = "Matutino"
@@ -593,6 +1032,159 @@ def ins_Intensivo(request):
         return render(request, 'schedule/3-Intensivo.html', {'enrolled': enrolled, 'form': form})
     return render(request, 'schedule/3-Intensivo.html', {'form': form})
 
+#Cupos programa Independiente
+
+def iInd_1m1(c):
+    if 'NIÑOS INTERMEDIO - José Galán' in c and Intensivo.objects.filter(n1m1='José Galán').count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - José Galán está lleno'
+    if 'NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)' in c and \
+            Elemental.objects.filter(j1='9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)').count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos) está lleno'
+    if 'NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)' in c and Intensivo.objects.filter(i1m1='Nazaret Reyes (Alegrías)').count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Nazaret Reyes (Alegrías) está lleno'
+    if 'NIVEL INTERMEDIO - El Carpeta (Bulerías)' in c and Intensivo.objects.filter(i1m1='El Carpeta (Bulerías)').count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - El Carpeta (Bulerías) está lleno'
+    if 'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano) está lleno'
+    if 'NIVEL AVANZADO - Valeriano Paños (Martinete)' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Valeriano Paños (Martinete) está lleno'
+    if 'NIVEL PROFESIONAL - Javier LaTorre' in c and Intensivo.objects.filter(i1m1=c).count() + \
+            Independiente.objects.filter(p9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL PROFESIONAL - Javier LaTorre está lleno'
+    return False
+
+def iInd_1m2(c):
+    if 'NIÑOS BÁSICO - Pablo Egea' in c and Elemental.objects.filter(n1='Pablo Egea').count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS BÁSICO - Pablo Egea está lleno'
+    if 'NIVEL BÁSICO - Valeriano Paños (Farruca)' in c and \
+            Elemental.objects.filter(j1='10:35 am - 12:05 pm | Valeriano Paños (Farruca)').count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Valeriano Paños (Farruca) está lleno'
+    if 'NIÑOS INTERMEDIO - El Carpeta (Seguiriyas)' in c \
+            and Intensivo.objects.filter(n1m2='El Carpeta (Seguiriyas)').count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - El Carpeta (Seguiriyas) está lleno'
+    if 'NIVEL INTERMEDIO - Rafael Estévez (Tangos)' in c and Intensivo.objects.filter(i1m2='Rafael Estévez (Tangos)').count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Rafael Estévez (Tangos) está lleno'
+    if 'NIVEL INTERMEDIO - Nazaret Reyes (Caña)' in c and Intensivo.objects.filter(i1m2='Nazaret Reyes (Caña)').count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Nazaret Reyes (Caña) está lleno'
+    if 'NIVEL AVANZADO - La Truco (Soleá)' in c and Intensivo.objects.filter(i1m2=c).count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - La Truco (Soleá) está lleno'
+    if 'NIVEL AVANZADO - Javier LaTorre (Taranto)' in c and Intensivo.objects.filter(i1m2=c).count() + \
+            Independiente.objects.filter(p10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Javier LaTorre (Taranto) está lleno'
+    return False
+
+def iInd_1v1(c):
+    if 'NIVEL INTERMEDIO - María Juncal (Fandangos)' in c and Intensivo.objects.filter(i1v1='María Juncal (Fandangos)').count() + \
+            Independiente.objects.filter(p3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - María Juncal (Fandangos) está lleno'
+    if 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)' in c and Intensivo.objects.filter(i1v1=c).count() + \
+            Independiente.objects.filter(p3=c).count() >= 1:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería) está lleno'
+    if 'NIVEL AVANZADO - Ana Morales (Soleá)' in c and Intensivo.objects.filter(i1v1=c).count() + \
+            Independiente.objects.filter(p3=c).count() >= 1:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Ana Morales (Soleá) está lleno'
+    return False
+
+def iInd_1v2(c):
+    if 'NIVEL INTERMEDIO - Ana Morales (Alegrías de Córdoba)' in c and Intensivo.objects.filter(i1v2='Ana Morales (Alegrías de Córdoba)').count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Ana Morales (Alegrías de Córdoba) está lleno'
+    if 'NIVEL AVANZADO - María Juncal (Guajira)' in c and Intensivo.objects.filter(i1v2=c).count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - María Juncal (Guajira) está lleno'
+    if 'NIVEL AVANZADO - Pedro Córdoba (Martinete)' in c and Intensivo.objects.filter(i1v2=c).count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Pedro Córdoba (Martinete) está lleno'
+    return False
+
+def iInd_2m1(c):
+    if 'NIVEL BÁSICO - José Galán' in c and Elemental.objects.filter(j2='9:00 am - 10:30 am | José Galán').count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - José Galán está lleno'
+    if 'NIVEL BÁSICO - Pablo Egea' in c and Elemental.objects.filter(j2='9:00 am 10:30 am | Pablo Egea').count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Pablo Egea está lleno'
+    if 'NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías)' in c and Intensivo.objects.filter(n2m1='Nazaret Reyes (Alegrías)').count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías) está lleno'
+    if 'NIVEL INTERMEDIO - El Carpeta (Seguiriyas)' in c and Intensivo.objects.filter(i2m1='El Carpeta (Seguiriyas)').count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - El Carpeta (Seguiriyas) está lleno'
+    if 'NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías)' in c and Intensivo.objects.filter(i2m1='Eduardo Guerrero (Bulerías)').count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías) está lleno'
+    if 'NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías) está lleno'
+    if 'NIVEL AVANZADO - Ana Morales (Seguiriya)' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Ana Morales (Seguiriya) está lleno'
+    if 'NIVEL PROFESIONAL - Pedro Córdoba' in c and Intensivo.objects.filter(i2m1=c).count() + \
+            Independiente.objects.filter(s9=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL PROFESIONAL - Pedro Córdoba está lleno'
+    return False
+
+def iInd_2m2(c):
+    if 'NIÑOS BÁSICO - El Carpeta (Alegría)' in c and Elemental.objects.filter(n2='El Carpeta (Alegría)').count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS BÁSICO - El Carpeta (Alegría) está lleno'
+    if 'NIVEL BÁSICO - Nazaret Reyes (Tangos)' in c and \
+            Elemental.objects.filter(j2='10:35 am - 12:05 pm | Nazaret Reyes (Tangos)').count() + \
+            Independiente.objects.filter(s10=c).count() >= 1:
+        return 'Lo sentimos, el cupo del curso NIVEL BÁSICO - Nazaret Reyes (Tangos) está lleno'
+    if 'NIÑOS INTERMEDIO - María Juncal (Tientos)' in c and Intensivo.objects.filter(n2m2='María Juncal (Tientos)').count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIÑOS INTERMEDIO - María Juncal (Tientos) está lleno'
+    if 'NIVEL INTERMEDIO - Ana Morales (Guajira)' in c and Intensivo.objects.filter(i2m2='Ana Morales (Guajira)').count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Ana Morales (Guajira) está lleno'
+    if 'NIVEL INTERMEDIO - María Moreno (Romance)' in c and Intensivo.objects.filter(i2m2='María Moreno (Romance)').count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - María Moreno (Romance) está lleno'
+    if 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)' in c and Intensivo.objects.filter(i2m2=c).count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería) está lleno'
+    if 'NIVEL AVANZADO - Eduardo Guerrero (Fandango)' in c and Intensivo.objects.filter(i2m2=c).count() + \
+            Independiente.objects.filter(s10=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Eduardo Guerrero (Fandango) está lleno'
+    return False
+
+def iInd_2v1(c):
+    if 'NIVEL INTERMEDIO - Karen Lugo (Bambera)' in c and Intensivo.objects.filter(i2v1='Karen Lugo (Bambera)').count() + \
+            Independiente.objects.filter(s3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL INTERMEDIO - Karen Lugo (Bambera) está lleno'
+    if 'NIVEL AVANZADO - La Truco (Seguiriya)' in c and Intensivo.objects.filter(i2v1=c).count() + \
+            Independiente.objects.filter(s3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - La Truco (Seguiriya) está lleno'
+    if 'NIVEL AVANZADO - Javier LaTorre (Alegrías)' in c and Intensivo.objects.filter(i2v1=c).count() + \
+            Independiente.objects.filter(s3=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Javier LaTorre (Alegrías) está lleno'
+    return False
+
+def iInd_2v2(c):
+    if 'NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías)' in c and\
+            Intensivo.objects.filter(i2v2='Juan Paredes (Bailes festeros, bulerías)').count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso  está lleno'
+    if 'NIVEL AVANZADO - Javier LaTorre (Farruca)' in c and Intensivo.objects.filter(i2v2=c).count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso NIVEL AVANZADO - Javier LaTorre (Farruca) está lleno'
+    if 'NIVEL AVANZADO - Karen Lugo (Martinete)' in c and Intensivo.objects.filter(i2v2=c).count() + \
+            Independiente.objects.filter(p5=c).count() >= 10:
+        return 'Lo sentimos, el cupo del curso  está lleno'
+    return False
 
 def ins_Independiente(request):
     if request.user.is_authenticated:
@@ -611,23 +1203,34 @@ def ins_Independiente(request):
                 i = 0
                 if new_class.p9:
                     i = i + 1
+                    if iInd_1m1(new_class.p9):
+                        error = iInd_1m1(new_class.p9)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if new_class.p10:
                     i = i + 1
+                    if iInd_1m2(new_class.p10):
+                        error = iInd_1m2(new_class.p10)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if new_class.p3:
                     i = i + 1
+                    if iInd_1v1(new_class.p3):
+                        error = iInd_1v1(new_class.p3)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if new_class.p5:
                     i = i + 1
+                    if iInd_1v2(new_class.p5):
+                        error = iInd_1v2(new_class.p5)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if i == 0:
                     error = "Necesitas inscribir al menos una clase"
-                    return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.weeks = "Primera semana"
                 new_class.classes = i
                 new_class.save()
                 return redirect(reverse('userprofile'))
             return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form})
 
-        # Primera semana
+        # Segunda semana
         if request.method == 'POST' and 's' in request.POST:
             form = IndependienteForm(request.POST)
             if form.is_valid():
@@ -636,16 +1239,27 @@ def ins_Independiente(request):
                 i = 0
                 if new_class.s9:
                     i = i + 1
+                    if iInd_2m1(new_class.s9):
+                        error = iInd_2m1(new_class.s9)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if new_class.s10:
                     i = i + 1
+                    if iInd_2m2(new_class.s10):
+                        error = iInd_2m2(new_class.s10)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if new_class.s3:
                     i = i + 1
+                    if iInd_2v1(new_class.s3):
+                        error = iInd_2v1(new_class.s3)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if new_class.s5:
                     i = i + 1
+                    if iInd_2v2(new_class.s5):
+                        error = iInd_2v2(new_class.s5)
+                        return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 if i == 0:
                     error = "Necesitas inscribir al menos una clase"
-                    return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form,
-                                                                         'error': error})
+                    return render(request, 'schedule/1-Independiente.html', {'enrolled': enrolled, 'form': form, 'error': error})
                 new_class.weeks = "Segunda semana"
                 new_class.classes = i
                 new_class.save()

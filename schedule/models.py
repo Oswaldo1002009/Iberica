@@ -358,18 +358,52 @@ class Intensivo(models.Model):
     b2m1 = models.CharField(max_length=150, choices=BWEEK2_9, blank=True)
     b2m2 = models.CharField(max_length=150, choices=BWEEK2_10, blank=True)
 
-    IWEEK1_9 = (('El Carpeta (Bulerías)', 'El Carpeta (Bulerías)'),
-                ('Nazaret Reyes (Alegrías)','Nazaret Reyes (Alegrías)'),)
-    IWEEK1_10 = (('Rafael Estévez (Tangos)', 'Rafael Estévez (Tangos)'),
-                 ('Nazaret Reyes (Caña)', 'Nazaret Reyes (Caña)',),)
-    IWEEK1_3 = (('María Juncal (Fandangos)', 'María Juncal (Fandangos)'),)
-    IWEEK1_5 = (('Ana Morales (Alegrías de Córdoba)', 'Ana Morales (Alegrías de Córdoba)'),)
-    IWEEK2_9 = (('Eduardo Guerrero (Bulerías)', 'Eduardo Guerrero (Bulerías)'),
-                ('El Carpeta (Seguiriyas)', 'El Carpeta (Seguiriyas)'),)
-    IWEEK2_10 = (('María Moreno (Romance)', 'María Moreno (Romance)'),
-                 ('Ana Morales (Guajira)','Ana Morales (Guajira)'),)
-    IWEEK2_3 = (('Karen Lugo (Bambera)', 'Karen Lugo (Bambera)'),)
-    IWEEK2_5 = (('Juan Paredes (Bailes festeros por bulerías)', 'Juan Paredes (Bailes festeros por bulerías)'),)
+    IWEEK1_9 = (
+        ('El Carpeta (Bulerías)', 'El Carpeta (Bulerías)'),
+        ('Nazaret Reyes (Alegrías)','Nazaret Reyes (Alegrías)'),
+        ('NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)', 'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)'),
+        ('NIVEL AVANZADO - Valeriano Paños (Martinete)', 'NIVEL AVANZADO - Valeriano Paños (Martinete)'),
+        ('NIVEL PROFESIONAL - Javier LaTorre', 'NIVEL PROFESIONAL - Javier LaTorre'),
+    )
+    IWEEK1_10 = (
+        ('Rafael Estévez (Tangos)', 'Rafael Estévez (Tangos)'),
+        ('Nazaret Reyes (Caña)', 'Nazaret Reyes (Caña)',),
+        ('NIVEL AVANZADO - La Truco (Soleá)', 'NIVEL AVANZADO - La Truco (Soleá)'),
+        ('NIVEL AVANZADO - Javier LaTorre (Taranto)', 'NIVEL AVANZADO - Javier LaTorre (Taranto)'),
+    )
+    IWEEK1_3 = (
+        ('María Juncal (Fandangos)', 'María Juncal (Fandangos)'),
+        ('NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)', 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)'),
+        ('NIVEL AVANZADO - Ana Morales (Soleá)', 'NIVEL AVANZADO - Ana Morales (Soleá)'),
+    )
+    IWEEK1_5 = (
+        ('Ana Morales (Alegrías de Córdoba)', 'Ana Morales (Alegrías de Córdoba)'),
+        ('NIVEL AVANZADO - María Juncal (Guajira)', 'NIVEL AVANZADO - María Juncal (Guajira)'),
+        ('NIVEL AVANZADO - Pedro Córdoba (Martinete)', 'NIVEL AVANZADO - Pedro Córdoba (Martinete)'),
+    )
+    IWEEK2_9 = (
+        ('Eduardo Guerrero (Bulerías)', 'Eduardo Guerrero (Bulerías)'),
+        ('El Carpeta (Seguiriyas)', 'El Carpeta (Seguiriyas)'),
+        ('NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)', 'NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)'),
+        ('NIVEL AVANZADO - Ana Morales (Seguiriya)', 'NIVEL AVANZADO - Ana Morales (Seguiriya)'),
+        ('NIVEL PROFESIONAL - Pedro Córdoba', 'NIVEL PROFESIONAL - Pedro Córdoba'),
+    )
+    IWEEK2_10 = (
+        ('María Moreno (Romance)', 'María Moreno (Romance)'),
+        ('Ana Morales (Guajira)','Ana Morales (Guajira)'),
+        ('NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)', 'NIVEL AVANZADO - Pedro Córdoba (Soleá por bulería)'),
+        ('NIVEL AVANZADO - Eduardo Guerrero (Fandango)', 'NIVEL AVANZADO - Eduardo Guerrero (Fandango)'),
+    )
+    IWEEK2_3 = (
+        ('Karen Lugo (Bambera)', 'Karen Lugo (Bambera)'),
+        ('NIVEL AVANZADO - La Truco (Seguiriya)', 'NIVEL AVANZADO - La Truco (Seguiriya)'),
+        ('NIVEL AVANZADO - Javier LaTorre (Alegrías)', 'NIVEL AVANZADO - Javier LaTorre (Alegrías)'),
+    )
+    IWEEK2_5 = (
+        ('Juan Paredes (Bailes festeros por bulerías)', 'Juan Paredes (Bailes festeros por bulerías)'),
+        ('NIVEL AVANZADO - Javier LaTorre (Farruca)', 'NIVEL AVANZADO - Javier LaTorre (Farruca)'),
+        ('NIVEL AVANZADO - Karen Lugo (Martinete)', 'NIVEL AVANZADO - Karen Lugo (Martinete)'),
+    )
     i1m1 = models.CharField(max_length=150, choices=IWEEK1_9, blank=True)
     i1m2 = models.CharField(max_length=150, choices=IWEEK1_10, blank=True)
     i1v1 = models.CharField(max_length=150, choices=IWEEK1_3, blank=True)
@@ -431,11 +465,15 @@ class Elemental(models.Model):
 
     NBWEEK1 = (('Pablo Egea', 'Pablo Egea'),)
     NBWEEK2 = (('El Carpeta (Alegría)', 'El Carpeta (Alegría)'),)
-    JABWEEK1 = (('9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)',
-                 '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)'),
-                ('10:35 am - 12:05 pm | Valeriano Paños (Farruca)', '10:35 am - 12:05 pm | Valeriano Paños (Farruca)'),)
-    JABWEEK2 = (('9:00 am - 10:30 am | José Galán', '9:00 am - 10:30 am | José Galán'),
-                ('10:35 am - 12:05 pm | Nazaret Reyes (Tangos)', '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)'),)
+    JABWEEK1 = (
+        ('9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)', '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)'),
+        ('10:35 am - 12:05 pm | Valeriano Paños (Farruca)', '10:35 am - 12:05 pm | Valeriano Paños (Farruca)'),
+    )
+    JABWEEK2 = (
+        ('9:00 am 10:30 am | Pablo Egea', '9:00 am 10:30 am | Pablo Egea'),
+        ('9:00 am - 10:30 am | José Galán', '9:00 am - 10:30 am | José Galán'),
+        ('10:35 am - 12:05 pm | Nazaret Reyes (Tangos)', '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)'),
+    )
 
     n1 = models.CharField(max_length=150, choices=NBWEEK1, blank=True)
     n2 = models.CharField(max_length=150, choices=NBWEEK2, blank=True)
@@ -463,15 +501,11 @@ class Independiente(models.Model):
 
     P900 = (
         ('NIÑOS INTERMEDIO - José Galán', 'NIÑOS INTERMEDIO - José Galán'),
-        ('NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)',
-         'NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)'),
-        ('NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)',
-         'NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)'),
+        ('NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)', 'NIVEL BÁSICO - Juan Paredes (Bailes festeros por tangos)'),
+        ('NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)', 'NIVEL INTERMEDIO - Nazaret Reyes (Alegrías)'),
         ('NIVEL INTERMEDIO - El Carpeta (Bulerías)', 'NIVEL INTERMEDIO - El Carpeta (Bulerías)'),
-        ('NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)',
-         'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)'),
-        ('NIVEL AVANZADO - Valeriano Paños (Martinete)',
-         'NIVEL AVANZADO - Valeriano Paños (Martinete)'),
+        ('NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)', 'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)'),
+        ('NIVEL AVANZADO - Valeriano Paños (Martinete)', 'NIVEL AVANZADO - Valeriano Paños (Martinete)'),
         ('NIVEL PROFESIONAL - Javier LaTorre', 'NIVEL PROFESIONAL - Javier LaTorre'),
     )
     P1035 = (
@@ -496,6 +530,7 @@ class Independiente(models.Model):
     S900 = (
         ('NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías)', 'NIÑOS INTERMEDIO - Nazaret Reyes (Alegrías)'),
         ('NIVEL BÁSICO - José Galán', 'NIVEL BÁSICO - José Galán'),
+        ('NIVEL BÁSICO - Pablo Egea', 'NIVEL BÁSICO - Pablo Egea'),
         ('NIVEL INTERMEDIO - El Carpeta (Seguiriyas)', 'NIVEL INTERMEDIO - El Carpeta (Seguiriyas)'),
         ('NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías)', 'NIVEL INTERMEDIO - Eduardo Guerrero (Bulerías)'),
         ('NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)',
@@ -517,7 +552,7 @@ class Independiente(models.Model):
         ('NIVEL AVANZADO - La Truco (Seguiriya)', 'NIVEL AVANZADO - La Truco (Seguiriya)'),
         ('NIVEL AVANZADO - Javier LaTorre (Alegrías)', 'NIVEL AVANZADO - Javier LaTorre (Alegrías)'),
     )
-    S1705 = S1530 = (
+    S1705 = (
         ('NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías)',
          'NIVEL INTERMEDIO - Juan Paredes (Bailes festeros, bulerías)'),
         ('NIVEL AVANZADO - Javier LaTorre (Farruca)', 'NIVEL AVANZADO - Javier LaTorre (Farruca)'),
