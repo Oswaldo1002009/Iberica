@@ -363,6 +363,7 @@ class Intensivo(models.Model):
         ('Nazaret Reyes (Alegrías)','Nazaret Reyes (Alegrías)'),
         ('NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)', 'NIVEL AVANZADO - Rafael Estévez (Cantiña del amarano)'),
         ('NIVEL AVANZADO - Valeriano Paños (Martinete)', 'NIVEL AVANZADO - Valeriano Paños (Martinete)'),
+        ('NIVEL PROFESIONAL - Javier LaTorre', 'NIVEL PROFESIONAL - Javier LaTorre'),
     )
     IWEEK1_10 = (
         ('Rafael Estévez (Tangos)', 'Rafael Estévez (Tangos)'),
@@ -385,6 +386,7 @@ class Intensivo(models.Model):
         ('El Carpeta (Seguiriyas)', 'El Carpeta (Seguiriyas)'),
         ('NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)', 'NIVEL AVANZADO - María Moreno (Bata de Cola por Alegrías)'),
         ('NIVEL AVANZADO - Ana Morales (Seguiriya)', 'NIVEL AVANZADO - Ana Morales (Seguiriya)'),
+        ('NIVEL PROFESIONAL - Pedro Córdoba', 'NIVEL PROFESIONAL - Pedro Córdoba'),
     )
     IWEEK2_10 = (
         ('María Moreno (Romance)', 'María Moreno (Romance)'),
@@ -467,8 +469,11 @@ class Elemental(models.Model):
         ('9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)', '9:00 am 10:30 am | Juan Paredes (Bailes festeros por tangos)'),
         ('10:35 am - 12:05 pm | Valeriano Paños (Farruca)', '10:35 am - 12:05 pm | Valeriano Paños (Farruca)'),
     )
-    JABWEEK2 = (('9:00 am - 10:30 am | José Galán', '9:00 am - 10:30 am | José Galán'),
-                ('10:35 am - 12:05 pm | Nazaret Reyes (Tangos)', '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)'),)
+    JABWEEK2 = (
+        ('9:00 am 10:30 am | Pablo Egea', '9:00 am 10:30 am | Pablo Egea'),
+        ('9:00 am - 10:30 am | José Galán', '9:00 am - 10:30 am | José Galán'),
+        ('10:35 am - 12:05 pm | Nazaret Reyes (Tangos)', '10:35 am - 12:05 pm | Nazaret Reyes (Tangos)'),
+    )
 
     n1 = models.CharField(max_length=150, choices=NBWEEK1, blank=True)
     n2 = models.CharField(max_length=150, choices=NBWEEK2, blank=True)
